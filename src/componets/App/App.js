@@ -1,12 +1,19 @@
 import React from 'react';
-import Header from '../Header/Header.js';
+import { Switch, Route, useHistory } from 'react-router-dom';
 
+import './App.css';
+
+import Header from '../Header/Header';
+import Main from '../Main/Main';
 
 function App() {
   return (
-    <div className="App">
+    <div className="page">
       'THIS SHIT IS WORKING!!!'
       <Header/>
+      <Route path = '/'>
+        <Main/>
+      </Route>
     </div>
   );
 }
