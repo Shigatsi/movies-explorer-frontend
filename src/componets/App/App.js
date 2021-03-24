@@ -5,7 +5,8 @@ import './App.css';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           sign-in
         </Route>
         <Route path = '*'>
-          NOT_FOUND!
+          <PageNotFound />
         </Route>
       </Switch>
     </div>
