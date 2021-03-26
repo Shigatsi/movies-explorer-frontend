@@ -1,7 +1,73 @@
 .header {
   display: flex;
+  margin:18px 70px 0;
+  align-content:center;
+}
+
+.header_type_default{
+  justify-content: space-between;
 }
 
 .header__logo {
   width: 38px;
+}
+
+.header__nav {
+  display: grid;
+}
+
+.header__nav_type_default{
+  gap: 30px;
+  align-items: center;
+  grid-template-areas:
+  "register login"
+}
+
+.header__default-link{
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+.header__default-link:hover{
+  opacity: 70%;
+  transition: .2s ease-in-out;
+}
+
+.header__link_type_register {
+  color: #000;
+}
+
+.header__link_type_login {
+  background: #000000;
+  border-radius: 3px;
+  width: 76px;
+  color: #fff;
+  text-align: center;
+  line-height: 32px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    margin:18px 30px 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header {
+    margin:18px 14px 0;
+  }
+
+  .header__nav_type_default{
+    gap: 14px;
+  }
+
+  .header__default-link{
+    font-size: 10px;
+  }
+
+  .header__link_type_login {
+    width: 54px;
+    line-height: 26px;
+  }
 }
