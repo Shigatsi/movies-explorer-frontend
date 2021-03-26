@@ -10,6 +10,7 @@
   line-height: 169px;
   margin-top: 246px;
   margin-bottom: 5px;
+  font-weight: normal;
 }
 
 .not-found__subtitle {
@@ -31,4 +32,31 @@
   opacity: 70%;
   transition: .2s ease-in-out;
 
+}
+
+@media screen and (max-width: 768px) {
+  .not-found__title {
+    margin-top: 408px;
+  }
+  .not-found__link{
+    margin-bottom: 222px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .not-found__title {
+    margin-top: 329px;
+    font-size: 80px;
+    line-height: 97px;
+    margin-bottom: 10px;
+  }
+
+  .not-found__subtitle {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 284px;
+  }
+  .not-found__link{
+    margin-bottom: 30px;
+  }
 }
