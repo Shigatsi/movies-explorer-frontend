@@ -1,4 +1,27 @@
 .navigation-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  opacity:0;
+  visibility: hidden;
+  transition: visibility 0s, opacity .2s linear;
+}
+
+.navigation-menu_type_active {
+  transition: opacity .2s, visibility .2s linear;
+  opacity: 1;
+  visibility: visible;
+}
+
+.navigation-menu__content {
+  transition: opacity .2s, visibility .2s linear;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,11 +31,6 @@
   background-color: #fff;
   position: fixed;
   top:0;
-  right: -100%;
-  transition: .2s ease-in-out;
-}
-
-.navigation-menu_type_active {
-  transition: .2s ease-in-out;
-  right:0;
+  z-index: 1;
+  right: 0;
 }
