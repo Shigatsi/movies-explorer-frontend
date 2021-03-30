@@ -21,18 +21,18 @@ function Navigation () {
       </div>
       <nav className = {navigationMenu ? "navigation-menu navigation-menu_type_active" : "navigation-menu" }>
         <div className = "navigation-menu__content">
-          <Link to ='#' className="navigation__bars">
-            <img className = "navigation__btn-close" src={closeBurgerIcon} onClick = {toggleNavigationMenu}/>
-          </Link>
-          <div className = "navigatio-menu__top">
-            <Link to = '/'>Главная</Link>
-            <Link to = '/movies'>Фильмы</Link>
-            <Link to = '/saved-movies'>Сохранённые фильмы</Link>
+          <div className = "navigation-menu__top">
+            <Link to ='#' className="navigation__bars">
+              <img className = "navigation__btn-close" src={closeBurgerIcon} onClick = {toggleNavigationMenu}/>
+            </Link>
+            <Link to = '/' className = "navigation-menu__link">Главная</Link>
+            <Link to = '/movies' className = "navigation-menu__link" onClick = {toggleNavigationMenu}>Фильмы</Link>
+            <Link to = '/saved-movies' className = "navigation-menu__link" onClick = {toggleNavigationMenu}>Сохранённые фильмы</Link>
           </div>
-          <Link to = "profile" className = "">
-            <figure className = "">
-              <img className=" " src={profileIcon} alt="иконкапрофиля" />
-              <figcaption className="">Аккаунт</figcaption>
+          <Link to = "profile" className = "navigation-menu__link navigation-menu__link_type_profile" onClick = {toggleNavigationMenu}>
+            <figure className = "navigation-menu__profile">
+              <img className="navigation-menu__profile-icon" src={profileIcon} alt="иконкапрофиля" />
+              <figcaption className="navigation-menu__profile-caption">Аккаунт</figcaption>
             </figure>
           </Link>
         </div>
