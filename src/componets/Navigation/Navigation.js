@@ -4,7 +4,7 @@ import { Route, Link } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation () {
-  render (
+  return (
     'this is burger Menu'
   )
 };

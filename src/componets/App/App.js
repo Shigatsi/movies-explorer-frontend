@@ -18,7 +18,9 @@ function App() {
           <Footer />
         </Route>
         <Route path = '/movies'>
+          <Header />
             movies
+          <Footer />
         </Route>
         <Route path = '/saved-movies'>
           saved-movies
