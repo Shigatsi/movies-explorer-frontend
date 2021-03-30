@@ -51,7 +51,6 @@
 }
 
 .header__authorized-link:first-of-type{
-  margin-right: 16px;
   font-weight: 500;
 }
 
@@ -62,6 +61,7 @@
 
 .header__nav_type_authorized {
   margin-left: 44px;
+  column-gap: 16px;
 }
 
 .header__profile {
@@ -73,6 +73,7 @@
   border: 2px solid #AAAAAA;
   box-sizing: border-box;
   border-radius: 50px;
+  margin: 0;
 }
 
 .heder__profile-caption {
@@ -81,93 +82,6 @@
   line-height: 16px;
 }
 
-/* .header {
-  display: flex;
-  margin:18px 70px 0;
-  align-content:center;
-}
-
-.header_type_default{
-  justify-content: space-between;
-}
-
-.header__logo {
-  width: 38px;
-}
-
-.header__nav {
-  display: grid;
-}
-
-.header__nav_type_default{
-  gap: 30px;
-  align-items: center;
-  grid-template-areas:
-  "register login"
-}
-
-.header__default-link{
-  font-size: 12px;
-  line-height: 16px;
-  text-decoration: none;
-}
-
-.header__default-link:hover{
-  opacity: 70%;
-  transition: .2s ease-in-out;
-}
-
-.header__link_type_register {
-  color: #000;
-}
-
-.header__link_type_login {
-  background: #000000;
-  border-radius: 3px;
-  width: 76px;
-  color: #fff;
-  text-align: center;
-  line-height: 32px;
-}
-
-.header__nav_type_authorized{
-  grid-template-areas:
-  "movies profile";
-  align-items: baseline;
-  justify-content: space-between;
-  /* grid-gap: 746px; */
-/* } */
-
-/* .header__authorized-link {
-  text-decoration: none;
-  color:#000;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-.header__authorized-link:first-of-type{
-  margin: 44px 0 16px;
-}
-
-.header__link_type_profile {
-  display: grid;
-  gap: 7px;
-  grid-template-areas:
-  "icon caption";
-  width: 100px;
-  line-height: 32px;
-  border: 2px solid #AAAAAA;
-  box-sizing: border-box;
-  border-radius: 50px;
-  align-items: baseline;
-  justify-content: center;
-}
-
-.heder__profile-caption{
-  font-size: 14px;
-  line-height: 16px;
-  margin:0;
-}
 
 @media screen and (max-width: 768px) {
   .header {
@@ -180,16 +94,16 @@
     margin:18px 14px 0;
   }
 
-  .header__nav_type_default{
-    gap: 14px;
+  .header__default-link:first-of-type{
+    margin-right: 14px;
   }
 
   .header__default-link{
     font-size: 10px;
+    line-height: 26px;
   }
 
   .header__link_type_login {
     width: 54px;
-    line-height: 26px;
   }
-} */
+}

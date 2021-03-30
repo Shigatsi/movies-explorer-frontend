@@ -23,9 +23,12 @@ function App() {
           <Footer />
         </Route>
         <Route path = '/saved-movies'>
+          <Header />
           saved-movies
+          <Footer />
         </Route>
         <Route path = '/profile'>
+          <Header />
           profile
         </Route>
         <Route path = '/sign-up'>
