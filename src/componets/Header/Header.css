@@ -14,6 +14,7 @@
 }
 
 .header__default-link{
+  font-weight: 500;
   font-size: 12px;
   line-height: 32px;
   text-decoration: none;
@@ -46,11 +47,6 @@
 }
 
 .header__authorized-link:hover {
-  opacity: 70%;
-  transition: .2s ease-in-out;
-}
-
-.header__authorized-link:first-of-type{
   font-weight: 500;
 }
 
@@ -77,9 +73,13 @@
 }
 
 .heder__profile-caption {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   line-height: 16px;
+}
+
+.heder__profile-caption:hover {
+  font-weight: 500;
 }
 
 

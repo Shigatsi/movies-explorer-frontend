@@ -50,6 +50,7 @@
   font-size: 18px;
   line-height: 22px;
   margin: 0 auto 28px;
+  font-weight: 500;
 }
 
 .navigation-menu__link:last-of-type {
@@ -85,4 +86,22 @@
   padding-left: 12px;
   padding-right: 12px;
   margin: 0;
+}
+
+@media screen and (max-width: 520px) {
+  .navigation-menu__content {
+    width:100vw;
+  }
+
+  .navigation-menu__link:last-of-type {
+    margin: 0 auto 46px;
+  }
+
+  .navigation__btn-close{
+    margin:23px 23px 100px 0;
+  }
+  .navigation__btn-close:hover{
+    opacity: 70%;
+    transition: .2s ease-in-out;
+  }
 }
