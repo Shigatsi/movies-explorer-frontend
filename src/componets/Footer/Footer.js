@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 
 import './Footer.css';
 
@@ -27,13 +26,13 @@ function Footer () {
           <p className="footer__copyright">&#169;{getYear()}</p>
           <ul className="footer__nav">
             <li className="foter__list-item">
-              <Link to='https://praktikum.yandex.ru/' className="footer__link" className="footer__link">Яндекс.Практикум</Link>
+              <a href='https://praktikum.yandex.ru/' className="footer__link" className="footer__link">Яндекс.Практикум</a>
             </li>
             <li className="foter__list-item">
-              <Link to='https://github.com/Shigatsi' className="footer__link" className="footer__link">Github</Link>
+              <a href='https://github.com/Shigatsi' className="footer__link" className="footer__link">Github</a>
             </li>
             <li className="foter__list-item">
-              <Link to='https://www.facebook.com/profile.php?id=100013576034548' className="footer__link" className="footer__link">Facebook</Link>
+              <a href='https://www.facebook.com/profile.php?id=100013576034548' className="footer__link" className="footer__link">Facebook</a>
             </li>
           </ul>
         </>
@@ -41,13 +40,13 @@ function Footer () {
         <>
           <ul className="footer__nav">
             <li className="foter__list-item">
-              <Link to='https://praktikum.yandex.ru/' className="footer__link" className="footer__link">Яндекс.Практикум</Link>
+              <a href='https://praktikum.yandex.ru/' className="footer__link" className="footer__link">Яндекс.Практикум</a>
             </li>
             <li className="foter__list-item">
-              <Link to='https://github.com/Shigatsi' className="footer__link" className="footer__link">Github</Link>
+              <a href='https://github.com/Shigatsi' className="footer__link" className="footer__link">Github</a>
             </li>
             <li className="foter__list-item">
-              <Link to='https://www.facebook.com/profile.php?id=100013576034548' className="footer__link" className="footer__link">Facebook</Link>
+              <a href='https://www.facebook.com/profile.php?id=100013576034548' className="footer__link" >Facebook</a>
             </li>
           </ul>
           <p className="footer__copyright">&#169;{getYear()}</p>

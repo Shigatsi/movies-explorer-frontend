@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import Profile from '../Profile/Profile';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
         </Route>
         <Route path = '/profile'>
           <Header />
-          profile
+          <Profile />
         </Route>
         <Route path = '/sign-up'>
           sign-up
