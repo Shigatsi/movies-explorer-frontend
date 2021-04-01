@@ -14,28 +14,25 @@ function Login () {
         />
 
         <ul className="form__items form__items_type_login">
-          <li className= "form__item">
-          <label className="form__label">Имя</label>
-            <input
-              type="text"
-              id="form_name"
-              name="name"
-              minLength="2"
-              maxLength="40"
-              pattern="[а-яёА-ЯЁA-Za-z \-]*"
-              required
-              className="form__input"
-              // value={values.name}
-              // onChange={handleChange}
-              />
-          </li>
-          <li className="form__item">
-            <label className="form__label">E-mail</label>
+        <li className= "form__item">
+          <label className="form__label">E-mail</label>
             <input
               type="email"
               id="form_email"
               name="email"
               minLength="3"
+              maxLength="40"
+              required
+              className="form__input"
+              // value={values.email}
+              // onChange={handleChange}
+            />
+          <label className="form__label">Password</label>
+            <input
+              type="password"
+              id="form_password"
+              name="password"
+              minLength="8"
               maxLength="40"
               required
               className="form__input"

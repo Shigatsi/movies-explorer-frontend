@@ -8,7 +8,8 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Profile from '../Profile/Profile';
-import Login from '../Login/Login'
+import Login from '../Login/Login';
+import Register from '../Register/Register';
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           <Profile />
         </Route>
         <Route path = '/sign-up'>
-          sign-up
+          <Register />
         </Route>
         <Route path = '/sign-in'>
           <Login />
