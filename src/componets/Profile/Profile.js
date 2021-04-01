@@ -5,6 +5,8 @@ import './Profile.css';
 
 function Profile({  }) {
 
+  const [isEdit, setIsEdit] = React.useState(false)
+
   const [userData, setUserData] = React.useState({
     name: 'Евгения',
     email: 'jane@test.com'
@@ -53,9 +55,9 @@ function Profile({  }) {
           </li>
         </ul>
       </form>
-      <span className='form__input-error form__input-error_hidden' id='form_input-error'></span>
-      <button className= "profile__btn profile__edit-btn">Редактировать</button>
-      <button id="profile_logout-btn"className=" profile__btn profile__logout-btn">Выйти из аккаунта</button>
+        {/* <span className='form__input-error form__input-error_hidden' id='form_input-error'></span> */}
+        <button className= "profile__btn profile__edit-btn">Редактировать</button>
+        <button id="profile_logout-btn"className=" profile__btn profile__logout-btn">Выйти из аккаунта</button>
     </div>
   )
 };
