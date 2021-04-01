@@ -1,0 +1,21 @@
+.form__logo{
+  width: 38px;
+}
+
+.form__subtitle {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  padding-top:40px;
+  padding-bottom: 40px;
+  text-align: left;
+  margin:0;
+}
+
+@media screen and (max-width: 456px) {
+  .form__subtitle {
+    padding-top:50px;
+    padding-bottom: 80px;
+    text-align: center;
+  }
+}

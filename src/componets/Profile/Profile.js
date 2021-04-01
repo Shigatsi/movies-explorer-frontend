@@ -1,5 +1,6 @@
 import React from 'react';
 
+import useFormWithValidation from '../Validation/Validation';
 import './Profile.css';
 
 function Profile({  }) {
@@ -8,26 +9,23 @@ function Profile({  }) {
 
   const toggleEditState = () => {
     setIsEdit(!isEdit);
+    console.log(isEdit)
   }
 
-  const [userData, setUserData] = React.useState({
+  const {values = {
     name: 'Евгения',
     email: 'jane@test.com'
-  })
+  }, handleChange, errors, isValid, resetForm} = useFormWithValidation()
 
-  function handleChangeUserData (evt) {
-    const {name, value} = evt.target;
-    setUserData({[name]:value})
-  }
-
+  console.log(values, errors)
 
   function handleSubmit(e) {
     e.preventDefault();
   }
   return(
     <div className="profile">
-      <form onSubmit={handleSubmit} className="profile__form">
-        <h2 className= "profile__form-subtitle">Привет, {userData.name}!</h2>
+      <form onSubmit={handleSubmit} className="profile__form" noValidate>
+        <h2 className= "profile__form-subtitle">Привет, {values.name}!</h2>
         <ul className="profile__form-items">
           <li className="profile__form-item">
             <label className="profile__form-label">Имя</label>
@@ -39,9 +37,11 @@ function Profile({  }) {
               maxLength="40"
               pattern="[а-яёА-ЯЁA-Za-z \-]*"
               required
+              readOnly={!isEdit}
               className="profile__form-input"
-              value={userData.name}
-              onChange={handleChangeUserData}/>
+              value={values.name}
+              onChange={handleChange}
+              />
           </li>
           <li className="profile__form-item">
             <label className="profile__form-label">E-mail</label>
@@ -52,20 +52,27 @@ function Profile({  }) {
               minLength="3"
               maxLength="40"
               required
+              readOnly={!isEdit}
               className="profile__form-input"
-              value={userData.email}
-              onChange={handleChangeUserData}/>
+              value={values.email}
+              onChange={handleChange}/>
           </li>
         </ul>
         {
-        (isEdit)&&(
-          <button
-            type="submit"
-            className = "profile__save-btn"
-            onSubmit={handleSubmit}
-          >Сохранить</button>
+        (isEdit)&&(errors)&&(
+            <span className='profile__input-error' id='form_input-error'>{errors.name}</span>
         )
       }
+        {
+          (isEdit)&&(
+            <button
+              type="submit"
+              className = {`profile__save-btn ${errors.name ? "profile__save-btn_type_disabled" : ""}`}
+              onSubmit={handleSubmit}
+              onClick={toggleEditState}
+            >Сохранить</button>
+          )
+        }
       </form>
       {
         (!isEdit)&&(
@@ -75,11 +82,7 @@ function Profile({  }) {
           </>
         )
       }
-
-
     </div>
-
-    /* <span className='form__input-error form__input-error_hidden' id='form_input-error'></span> */
   )
 };
 

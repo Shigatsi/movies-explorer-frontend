@@ -1,10 +1,14 @@
 import React from 'react';
 
+import Navtab from '../NavTab/NavTab'
+import './Promo.css';
+
 function Promo () {
   return (
-    <div className = 'promo'>
+    <section className = 'promo'>
       Учебный проект студентки факультета Веб-разработки.
-    </div>
+      <Navtab />
+    </section>
 
 
   );

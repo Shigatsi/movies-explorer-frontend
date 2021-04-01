@@ -8,6 +8,7 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Profile from '../Profile/Profile';
+import Login from '../Login/Login'
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
           sign-up
         </Route>
         <Route path = '/sign-in'>
-          sign-in
+          <Login />
         </Route>
         <Route path = '*'>
           <PageNotFound />

@@ -1,0 +1,162 @@
+.login {
+  display: flex;
+  justify-content: center;
+}
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 70px 0 0;
+  width: 396px;
+}
+
+.form__items{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+
+}
+
+.form__items_type_login {
+  height:156px;
+}
+
+.form__item{
+  display: grid;
+  row-gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form__item:last-of-type{
+  margin-bottom: 0;
+}
+
+.form__label {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+}
+
+.form__input {
+  background: #F9F9F9;
+  border: none;
+  border-radius: 8px;
+  height: 46px;
+  font-size: 13px;
+  line-height: 16px;
+  padding-left: 15px;
+}
+
+
+.profile__form-input:focus{
+  outline: none;
+}
+
+.form__input_type_error {
+  color: #FF4062;
+
+}
+
+.form__input-error{
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #FF4062;
+}
+
+.form__input-error_hidden {
+  visibility: hidden;
+}
+
+.form__submit-btn{
+  height: 45px;
+  background-color: #000;
+  opacity: 1;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  border-radius: 3px;
+  border-style: none;
+  pointer-events: initial;
+  width: 100%;
+}
+
+.form__submit-btn_type_login {
+  margin: 179px 0 0;
+}
+
+.form__submit-btn:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, .8);
+  transition: .2s ease-in-out;
+}
+
+.form__submit-btn:focus{
+  outline: none;
+}
+
+.form__text {
+  margin: 16px auto 70px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #A0A0A0;
+}
+
+.form__link {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+  color:#000;
+}
+
+.form__link:hover{
+  opacity: 70%;
+  transition: .2s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .login__form {
+    margin: 232px 0 0;
+  }
+
+  .form__text {
+    margin: 16px auto 232px;
+  }
+}
+
+@media screen and (max-width: 456px) {
+  .login__form {
+    margin: 70px 0 0;
+    align-items: center;
+    width: calc(100vw - 60px);
+  }
+
+  .form__item {
+    row-gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form__submit-btn_type_login {
+    margin: 260px 0 0;
+  }
+
+  .form__text {
+    margin: 14px auto 30px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
