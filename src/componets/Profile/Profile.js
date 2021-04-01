@@ -1,11 +1,14 @@
 import React from 'react';
-import { render } from 'react-dom';
 
 import './Profile.css';
 
 function Profile({  }) {
 
-  const [isEdit, setIsEdit] = React.useState(false)
+  const [isEdit, setIsEdit] = React.useState(false);
+
+  const toggleEditState = () => {
+    setIsEdit(!isEdit);
+  }
 
   const [userData, setUserData] = React.useState({
     name: 'Евгения',
@@ -54,11 +57,29 @@ function Profile({  }) {
               onChange={handleChangeUserData}/>
           </li>
         </ul>
+        {
+        (isEdit)&&(
+          <button
+            type="submit"
+            className = "profile__save-btn"
+            onSubmit={handleSubmit}
+          >Сохранить</button>
+        )
+      }
       </form>
-        {/* <span className='form__input-error form__input-error_hidden' id='form_input-error'></span> */}
-        <button className= "profile__btn profile__edit-btn">Редактировать</button>
-        <button id="profile_logout-btn"className=" profile__btn profile__logout-btn">Выйти из аккаунта</button>
+      {
+        (!isEdit)&&(
+          <>
+            <button className= "profile__btn profile__edit-btn" onClick={toggleEditState}>Редактировать</button>
+            <button id="profile_logout-btn"className=" profile__btn profile__logout-btn">Выйти из аккаунта</button>
+          </>
+        )
+      }
+
+
     </div>
+
+    /* <span className='form__input-error form__input-error_hidden' id='form_input-error'></span> */
   )
 };
 
