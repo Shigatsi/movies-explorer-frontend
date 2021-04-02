@@ -26,7 +26,7 @@ function AboutMe () {
       </div>
       <img className="about-me__photo" src={Photo} alt="Моё фото в красивой рубашечке и бабочке"></img>
 
-      {/* <Portfolio /> */}
+      <Portfolio />
     </section>
 
 
