@@ -16,7 +16,7 @@ function Header () {
       setWidth(window.innerWidth);
     }
     window.addEventListener('resize', handleResize)
-  })
+  }, 1000)
 
 
   return (
