@@ -15,7 +15,6 @@ function Main () {
   return (
     <div className = 'main'>
       <Promo />
-      <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe />

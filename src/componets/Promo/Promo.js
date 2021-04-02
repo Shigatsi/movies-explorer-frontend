@@ -6,7 +6,7 @@ import './Promo.css';
 function Promo () {
   return (
     <section className = 'promo'>
-      Учебный проект студентки факультета Веб-разработки.
+     <h1 className="promo__header">Учебный проект студентки факультета Веб&#8209;разработки.</h1>
       <Navtab />
     </section>
 

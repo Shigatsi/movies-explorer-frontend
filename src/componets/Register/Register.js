@@ -65,7 +65,6 @@ function Register () {
         </p>
       </form>
     </section>
-
   )
 }
 
