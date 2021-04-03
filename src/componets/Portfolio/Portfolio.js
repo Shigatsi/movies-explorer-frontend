@@ -7,19 +7,26 @@ import arrow from '../../images/arrow.svg';
 function Portfolio () {
   return (
     <div className = 'portfolio'>
-      <p className="portfolio__subtitle"></p>
+      <p className="portfolio__subtitle">Портфолио</p>
       <ul className="portfolio__links-list">
         <li className="potfolio__item">
-          <a hreh="https://shigatsi.github.io/how-to-learn/" className="portfolio__link">Статичный сайт</a>
+          <a href="https://shigatsi.github.io/how-to-learn/" className="portfolio__link">
+            Статичный сайт
           <img className="portfolio__img" src={arrow} alt = "стрелочка"/>
+          </a>
         </li>
         <li className="potfolio__item">
-          <a hreh="https://shigatsi.github.io/russian-travel/" className="portfolio__link">Адаптивный сайт</a>
-          <img className="portfolio__img" src={arrow} alt = "стрелочка"/>
+          <a href="https://shigatsi.github.io/russian-travel/" className="portfolio__link">
+            Адаптивный сайт
+            <img className="portfolio__img" src={arrow} alt = "стрелочка"/>
+          </a>
         </li>
         <li className="potfolio__item">
-          <a hreh="https://shigatsimesto.students.nomoredomains.icu/" className="portfolio__link">Одностраничное приложение</a>
-          <img className="portfolio__img" src={arrow} alt = "стрелочка"/>
+          <a href="https://shigatsimesto.students.nomoredomains.icu/" className="portfolio__link">
+            Одностраничное приложение
+            <img className="portfolio__img" src={arrow} alt = "стрелочка"/>
+          </a>
+
         </li>
       </ul>
     </div>
