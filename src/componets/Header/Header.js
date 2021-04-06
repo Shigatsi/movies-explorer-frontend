@@ -44,7 +44,7 @@ function Header () {
           (width >= 786) ? (
             <Link to = "profile" className = "header__authorized-link header__link_type_profile">
               <figure className = "header__profile">
-                <img className=" header__profile-icon" src={profileIcon} alt="иконкапрофиля" />
+                <img className=" header__profile-icon" src={profileIcon} alt="иконка профиля" />
                 <figcaption className="heder__profile-caption">Аккаунт</figcaption>
               </figure>
             </Link>
