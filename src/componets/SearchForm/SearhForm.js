@@ -7,7 +7,7 @@ import Switcher from '../Switcher/Switcher'
 function SearchForm () {
   return (
     <div className = "search-form">
-      <p className = "search-form__subtitle">Фильм</p>
+      <input className = "search-form__input" placeholder="Фильм"></input>
       <button className= "search-form__btn">
         <img className ="search-form__btn-img" src={searchBtn} alt="лупа"/>
       </button>
