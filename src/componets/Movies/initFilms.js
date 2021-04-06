@@ -1,10 +1,10 @@
-import cover_1 from '../images/cover_1.jpg'
-import cover_2 from '../images/cover_2.jpg'
-import cover_3 from '../images/cover_3.jpg'
-import cover_4 from '../images/cover_4.jpg'
-import cover_5 from '../images/cover_5.jpg'
-import cover_6 from '../images/cover_6.jpg'
-import cover_7 from '../images/cover_7.jpg'
+import cover_1 from '../../images/cover_1.jpg'
+import cover_2 from '../../images/cover_2.jpg'
+import cover_3 from '../../images/cover_3.jpg'
+import cover_4 from '../../images/cover_4.jpg'
+import cover_5 from '../../images/cover_5.jpg'
+import cover_6 from '../../images/cover_6.jpg'
+import cover_7 from '../../images/cover_7.jpg'
  const initFilms = [
   {
     name: '33 слова о дизайне',

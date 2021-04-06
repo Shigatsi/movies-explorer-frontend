@@ -11,6 +11,7 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies'
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         </Route>
         <Route path = '/saved-movies'>
           <Header />
-          saved-movies
+          <SavedMovies />
           <Footer />
         </Route>
         <Route path = '/profile'>

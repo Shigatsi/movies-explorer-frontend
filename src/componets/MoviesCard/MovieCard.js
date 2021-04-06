@@ -22,9 +22,12 @@ function MovieCard ( { cover, title, duration, type } ) {
             )
           }
           {
-            (isAdded&& type==='movies') ? (
+            (isAdded&&type==='movies')&&(
               <button className="movie-card__btn movie-card__btn_type_added" onClick={toggleAddedState}></button>
-            ) : (
+            )
+          }
+          {(type!=='movies')&&
+            (
               <button className="movie-card__btn movie-card__btn_type_delete"></button>
             )
           }

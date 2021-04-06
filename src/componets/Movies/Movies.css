@@ -22,3 +22,15 @@
   transition: .2s ease-in-out;
   outline: none;
 }
+
+@media screen and (max-width: 768px) {
+  .movies__more {
+    height: 36px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .movies__more {
+    width: 240px;
+  }
+}

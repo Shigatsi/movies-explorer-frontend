@@ -1,21 +1,20 @@
 import React from 'react';
 
-import './Movies.css';
+import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearhForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import templateFilms from './initFilms';
+import templateFilms from './templateFilms';
 
-function Movies (  ) {
-  return (
+function SavedMovies () {
+  return(
     <section className="movies">
       <SearchForm />
       <MoviesCardList
-        type = "movies"
+        type = "saved_movies"
         movies = {templateFilms}
-      />
-      <button className = "movies__more" >Ещё</button>
+    />
     </section>
   )
 }
 
-export default Movies;
+export default SavedMovies;
