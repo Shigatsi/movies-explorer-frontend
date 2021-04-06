@@ -57,3 +57,17 @@
   line-height: 18px;
   margin:0;
 }
+
+@media screen and (max-width: 768px) {
+  .switch {
+    justify-content: flex-end;
+    padding-top:30px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .switch {
+    justify-content: center;
+    padding-top:41px;
+  }
+}
