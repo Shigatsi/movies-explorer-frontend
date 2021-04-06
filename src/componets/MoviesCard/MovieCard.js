@@ -17,7 +17,7 @@ function MovieCard ( { cover, title, duration, type } ) {
         <div className = "movie-card__movie">
           <img className = "movie-card__cover" src = {cover} alt = {title}/>
           {
-            (!isAdded) && (
+            (!isAdded&&type==='movies') && (
               <button className="movie-card__btn movie-card__btn_type_save" onClick={toggleAddedState}>Сохранить</button>
             )
           }
