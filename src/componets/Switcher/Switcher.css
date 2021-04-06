@@ -4,6 +4,7 @@
   padding-top:33px;
   border-top:1px solid #e8e8e8;
   grid-column: 1 / span 2;
+  align-items: center;
 }
 
 .switcher {
@@ -63,11 +64,20 @@
     justify-content: flex-end;
     padding-top:30px;
   }
+
+  .switcher{
+    order: 1;
+  }
 }
 
 @media screen and (max-width: 425px) {
   .switch {
     justify-content: center;
     padding-top:41px;
+  }
+
+  .switcher__caption {
+    font-size: 11px;
+    line-height: 18px;
   }
 }
