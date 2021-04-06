@@ -3,6 +3,7 @@ import React from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearhForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Preloader from '../Preloader/Preloader'
 import templateFilms from './initFilms';
 
 function Movies (  ) {
@@ -13,7 +14,8 @@ function Movies (  ) {
         type = "movies"
         movies = {templateFilms}
       />
-      <button className = "movies__more" >Ещё</button>
+      <button className = "movies__more">Ещё</button>
+      <Preloader />
     </section>
   )
 }
