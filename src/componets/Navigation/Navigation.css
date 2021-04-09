@@ -35,8 +35,17 @@
   align-self: flex-end;
 }
 
+.navigation__btn:hover {
+  opacity: 70%;
+  transition: .2s ease-in-out;
+}
 .navigation__btn-close{
   margin:23px 23px 105px 0;
+}
+
+.navigation__btn-close:hover{
+  opacity: 70%;
+  transition: .2s ease-in-out;
 }
 
 .navigation-menu__top {
@@ -99,9 +108,5 @@
 
   .navigation__btn-close{
     margin:23px 23px 100px 0;
-  }
-  .navigation__btn-close:hover{
-    opacity: 70%;
-    transition: .2s ease-in-out;
   }
 }

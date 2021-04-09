@@ -7,7 +7,7 @@ function Swither () {
     <section className = "switch">
     <label className="switcher">
        <input className = "switcher__checkbox" id = "switcher" type = "checkbox" />
-       <span className= "swithcer__btn" htmlFor="switcher" />
+       <span className= "swithcer__btn" />
     </label>
     <p className = "switcher__caption">Коротокометражки</p>
     </section>
