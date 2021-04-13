@@ -7,9 +7,14 @@ import Switcher from '../Switcher/Switcher'
 function SearchForm () {
 
   const [keyWord, setKeyWord] = React.useState("");
+  const [isShort, setIsShort] = React.useState(false);
 
   function handleChangeKeyWord (evt) {
     setKeyWord(evt.target.value)
+  }
+
+  function handleChangeDuration () {
+    setIsShort(!isShort);
   }
 
   return (
@@ -32,7 +37,10 @@ function SearchForm () {
       >
         <img className ="search-form__btn-img" src={searchBtn} alt="лупа"/>
       </button>
-      <Switcher />
+      <Switcher
+        isOn = {isShort}
+        handleToggle = {handleChangeDuration}
+      />
 
     </div>
   )
