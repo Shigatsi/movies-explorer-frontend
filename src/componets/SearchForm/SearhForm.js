@@ -5,6 +5,13 @@ import searchBtn from '../../images/search_btn.svg'
 import Switcher from '../Switcher/Switcher'
 
 function SearchForm () {
+
+  const [keyWord, setKeyWord] = React.useState("");
+
+  function handleChangeKeyWord (evt) {
+    setKeyWord(evt.target.value)
+  }
+
   return (
     <div className = "search-form">
       <input
@@ -17,8 +24,12 @@ function SearchForm () {
         required
         placeholder="Фильм"
         className = "search-form__input"
+        onChange = {handleChangeKeyWord}
       ></input>
-      <button className= "search-form__btn">
+      <button
+        className= "search-form__btn"
+        // onClick = {searchBtnHandler}
+      >
         <img className ="search-form__btn-img" src={searchBtn} alt="лупа"/>
       </button>
       <Switcher />

@@ -11,9 +11,30 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies'
+import SavedMovies from '../SavedMovies/SavedMovies';
+
+import getMovies from '../../utils/MoviesApi';
 
 function App() {
+
+  //auth
+
+  //movies
+
+  const [movies, setMovies] = React.useState([]);
+  React.useEffect(()=> {
+      getMovies()
+      .then((movies)=> {
+        setMovies(movies)
+        console.log(movies)
+      })
+      .catch(err => console.error(err));
+  }, [])
+
+  function handleFilmSearch (keyWord) {
+    getMovies()
+  }
+
   return (
     <div className="page">
       <Switch>
@@ -24,7 +45,7 @@ function App() {
         </Route>
         <Route path = '/movies'>
           <Header />
-          <Movies />
+          <Movies/>
           <Footer />
         </Route>
         <Route path = '/saved-movies'>
