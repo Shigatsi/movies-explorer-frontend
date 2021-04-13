@@ -14,6 +14,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 
 import getMovies from '../../utils/MoviesApi';
+import searchFilm from '../../utils/SearchFilm';
 
 function App() {
 
@@ -27,6 +28,11 @@ function App() {
       .then((movies)=> {
         setMovies(movies)
         console.log(movies)
+        console.log(typeof(movies));
+        const suitableFilms = movies.filter((movie)=>
+         searchFilm('гластонбери', false, movie)
+        )
+        console.log(suitableFilms);
       })
       .catch(err => console.error(err));
   }, [])

@@ -6,7 +6,6 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader'
 import templateFilms from './initFilms';
 
-import SearchMovies from '../MoviesSearch/MoviesSearch';
 
 function Movies (  ) {
   const [isSearched, setIsSearched] = React.useState(false);
