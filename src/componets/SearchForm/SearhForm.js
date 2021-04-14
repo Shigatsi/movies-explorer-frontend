@@ -4,7 +4,7 @@ import './SearchForm.css';
 import searchBtn from '../../images/search_btn.svg'
 import Switcher from '../Switcher/Switcher'
 
-function SearchForm () {
+function SearchForm ({onClick}) {
 
   const [keyWord, setKeyWord] = React.useState("");
   const [isShort, setIsShort] = React.useState(false);
@@ -33,7 +33,7 @@ function SearchForm () {
       ></input>
       <button
         className= "search-form__btn"
-        // onClick = {searchBtnHandler}
+        onClick = {onClick}
       >
         <img className ="search-form__btn-img" src={searchBtn} alt="лупа"/>
       </button>

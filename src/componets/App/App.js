@@ -14,7 +14,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 
 import getMovies from '../../utils/MoviesApi';
-import searchFilm from '../../utils/SearchFilm';
+import findSuitableFilms from '../../utils/SearchFilm';
 
 function App() {
 
@@ -23,22 +23,15 @@ function App() {
   //movies
 
   const [movies, setMovies] = React.useState([]);
-  React.useEffect(()=> {
-      getMovies()
+
+  function handleFilmSearch (keyWord, isShort, movies) {
+    getMovies()
       .then((movies)=> {
         setMovies(movies)
-        console.log(movies)
-        console.log(typeof(movies));
-        const suitableFilms = movies.filter((movie)=>
-         searchFilm('гластонбери', false, movie)
-        )
-        console.log(suitableFilms);
+        findSuitableFilms(keyWord, isShort, movies)
+        console.log(keyWord, isShort)
       })
-      .catch(err => console.error(err));
-  }, [])
-
-  function handleFilmSearch (keyWord) {
-    getMovies()
+    .catch(err => console.error(err));
   }
 
   return (
@@ -51,7 +44,10 @@ function App() {
         </Route>
         <Route path = '/movies'>
           <Header />
-          <Movies/>
+          <Movies
+            onClick = {handleFilmSearch}
+            movies = {movies}
+          />
           <Footer />
         </Route>
         <Route path = '/saved-movies'>

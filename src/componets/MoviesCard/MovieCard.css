@@ -12,6 +12,7 @@
 .movie-card__cover {
   border-radius: 6px;
   object-fit: cover;
+  height: 201px;
   width:100%
 }
 

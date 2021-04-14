@@ -26,4 +26,9 @@ function searchFilm (keyWord, isShort, movie) {
   }
 }
 
-export default searchFilm;
+function findSuitableFilms (keyWord, isShort, movies) {
+  return  movies.filter((movie)=>
+  searchFilm(keyWord, isShort, movie)
+ )
+}
+export default findSuitableFilms;

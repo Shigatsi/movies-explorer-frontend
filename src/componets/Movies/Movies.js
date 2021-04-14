@@ -7,16 +7,16 @@ import Preloader from '../Preloader/Preloader'
 import templateFilms from './initFilms';
 
 
-function Movies (  ) {
+function Movies ( {onClick, movies} ) {
   const [isSearched, setIsSearched] = React.useState(false);
 
 
   return (
     <section className="movies">
-      <SearchForm />
+      <SearchForm onClick = {onClick}/>
       <MoviesCardList
         type = "movies"
-        movies = {templateFilms}
+        movies = {movies}
       />
       <button className = "movies__more">Ещё</button>
       <Preloader />

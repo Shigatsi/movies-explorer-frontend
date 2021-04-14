@@ -11,7 +11,10 @@ function MovieCard ( { cover, title, duration, type } ) {
     console.log(isAdded)
   }
 
+  // console.log(cover.url)
+  // `'https://api.nomoreparties.co/'${cover.url}` || ''
 
+  console.log('this is cover!' + cover, 'this is duration!' + duration)
   return (
     <div className ="movie-card">
         <div className = "movie-card__movie">
