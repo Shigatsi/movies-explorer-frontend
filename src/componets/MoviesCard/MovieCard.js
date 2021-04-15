@@ -1,8 +1,9 @@
 import React from 'react';
 
 import './MovieCard.css';
+import convertDuration from '../../utils/DurationConverter';
 
-function MovieCard ( { cover, title, duration, type } ) {
+function MovieCard ( { cover, title, duration, type, trailer } ) {
 
   const [isAdded, setIsAdded] = React.useState(false);
 
@@ -11,14 +12,11 @@ function MovieCard ( { cover, title, duration, type } ) {
     console.log(isAdded)
   }
 
-  // console.log(cover.url)
-  // `'https://api.nomoreparties.co/'${cover.url}` || ''
-
-  console.log('this is cover!' + cover, 'this is duration!' + duration)
   return (
     <div className ="movie-card">
         <div className = "movie-card__movie">
-          <img className = "movie-card__cover" src = {cover} alt = {title}/>
+          <a href = {trailer} target= "blank" rel = "noreferrer">
+          <img className = "movie-card__cover" src = {cover} alt = {title} /></a>
           {
             (!isAdded&&type==='movies') && (
               <button className="movie-card__btn movie-card__btn_type_save" onClick={toggleAddedState}>Сохранить</button>
@@ -39,7 +37,7 @@ function MovieCard ( { cover, title, duration, type } ) {
         </div>
         <div className = "movie-card__caption">
           <p className = "movie-card__title">{title}</p>
-          <p className = "movie-card__duration">{duration}</p>
+          <p className = "movie-card__duration">{convertDuration(duration)}</p>
         </div>
     </div>
   )

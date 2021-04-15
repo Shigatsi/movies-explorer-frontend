@@ -3,7 +3,7 @@ import React from 'react';
 import './MoviesCardList.css';
 
 import MovieCard from '../MoviesCard/MovieCard';
-
+import {BASE_URL} from '../../utils/Constants';
 
 
 function MoviesCardList ({ movies, type }) {
@@ -18,10 +18,10 @@ function MoviesCardList ({ movies, type }) {
         <MovieCard
           key = {movie.id}
           type = {type}
-          // cover = {movie.cover}
-          cover = {movie.image ? `https://api.nomoreparties.co${movie.image.url}` : ''}
+          cover = {movie.image ? `${BASE_URL}${movie.image.url}` : ''}
           duration = {movie.duration}
           title = {movie.nameRU}
+          trailer = {movie.trailerLink}
 
         />
       ))

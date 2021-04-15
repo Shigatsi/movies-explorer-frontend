@@ -6,18 +6,11 @@ import profileIcon from '../../images/profile_icon.svg'
 import './Header.css';
 
 import Navigation from '../Navigation/Navigation';
+import useViewportWidth from '../../utils/useViewportWidth';
 
 function Header () {
 
-  const [width, setWidth] = React.useState(window.innerWidth)
-
-  React.useEffect(() => {
-    function handleResize() {
-      setWidth(window.innerWidth);
-    }
-    window.addEventListener('resize', handleResize)
-  }, 1000)
-
+  const { width } = useViewportWidth();
 
   return (
     <header className= "header">

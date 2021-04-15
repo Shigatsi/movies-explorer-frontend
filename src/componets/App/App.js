@@ -23,15 +23,19 @@ function App() {
   //movies
 
   const [movies, setMovies] = React.useState([]);
+  const [isSearch, setIsSearch] = React.useState(false);
 
   function handleFilmSearch (keyWord, isShort, movies) {
+    setIsSearch(true)
+    console.log(isSearch)
     getMovies()
       .then((movies)=> {
         setMovies(movies)
         findSuitableFilms(keyWord, isShort, movies)
         console.log(keyWord, isShort)
       })
-    .catch(err => console.error(err));
+    .catch(err => console.error(err))
+    .finally(()=>setIsSearch(false))
   }
 
   return (
@@ -47,6 +51,7 @@ function App() {
           <Movies
             onClick = {handleFilmSearch}
             movies = {movies}
+            isSearch = {isSearch}
           />
           <Footer />
         </Route>
