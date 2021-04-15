@@ -7,14 +7,10 @@ import {BASE_URL} from '../../utils/Constants';
 
 
 function MoviesCardList ({ movies, type }) {
-  console.log(movies)
-
   return (
   <section className = "movie-cardlist">
     {
-
       movies.map((movie) => (
-
         <MovieCard
           key = {movie.id}
           type = {type}

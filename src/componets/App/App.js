@@ -27,7 +27,6 @@ function App() {
 
   function handleFilmSearch (keyWord, isShort, movies) {
     setIsSearch(true)
-    console.log(isSearch)
     getMovies()
       .then((movies)=> {
         setMovies(movies)
@@ -52,6 +51,7 @@ function App() {
             onClick = {handleFilmSearch}
             movies = {movies}
             isSearch = {isSearch}
+
           />
           <Footer />
         </Route>

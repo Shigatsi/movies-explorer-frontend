@@ -8,6 +8,7 @@ function SearchForm ({onClick}) {
 
   const [keyWord, setKeyWord] = React.useState("");
   const [isShort, setIsShort] = React.useState(false);
+  const [error, setError] = React.useState(false);
 
   function handleChangeKeyWord (evt) {
     setKeyWord(evt.target.value)
@@ -17,15 +18,27 @@ function SearchForm ({onClick}) {
     setIsShort(!isShort);
   }
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    if (keyWord === "") {
+      console.log('no keyWORD!' )
+      setError(true)
+    } else {
+      console.log('keyWORD! exist!!' )
+      setError(false)
+      onClick(keyWord, isShort)
+    }
+  }
+
   return (
-    <div className = "search-form">
+    <form className = "search-form" onSubmit={handleSubmit} noValidate>
       <input
         type="text"
         id="form_film"
         name="film"
         minLength="2"
         maxLength="50"
-        pattern="[а-яёА-ЯЁA-Za-z \-]*"
+        value = {keyWord}
         required
         placeholder="Фильм"
         className = "search-form__input"
@@ -33,16 +46,18 @@ function SearchForm ({onClick}) {
       ></input>
       <button
         className= "search-form__btn"
-        onClick = {onClick}
+        type="submit"
       >
         <img className ="search-form__btn-img" src={searchBtn} alt="лупа"/>
       </button>
+      {error&&(<span className="search-form__input-error">Введите ключевое слово</span>)}
+
       <Switcher
         isOn = {isShort}
         handleToggle = {handleChangeDuration}
       />
 
-    </div>
+    </form>
   )
 
 }
