@@ -27,6 +27,7 @@ function App() {
   const [findFilms, setFindFilms] = React.useState([]);
 
   const [isSearch, setIsSearch] = React.useState(false);
+  const [notFound, setNotfound] = React.useState(false);
 
   function movieConverter (movies) {
     return movies.map((movie)=>{
@@ -52,7 +53,8 @@ function App() {
         console.log(res)
         setMovies(movieConverter(res));
         localStorage.setItem("movies", JSON.stringify(movies));
-        setFindFilms(findSuitableFilms(keyWord, isShort, movies))
+        setFindFilms(findSuitableFilms(keyWord, isShort, movies));
+        findFilms.length===0&&setNotfound(true);
       })
     .catch(err => console.error(err))
     .finally(()=>setIsSearch(false))
@@ -72,8 +74,7 @@ function App() {
             onClick = {handleFilmSearch}
             movies = {findFilms}
             isSearch = {isSearch}
-
-
+            notFound = {notFound}
           />
           <Footer />
         </Route>

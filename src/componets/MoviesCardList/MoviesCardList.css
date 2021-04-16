@@ -3,8 +3,9 @@
     grid-template-columns: repeat(auto-fill, 360px);
     grid-auto-rows: auto;
     grid-gap: 59px 30px;
-    padding: 70px 70px 28px;
+    padding: 70px 0 28px;
     justify-content: center;
+    /* align-self: center; */
 }
 
 

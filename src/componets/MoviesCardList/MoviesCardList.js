@@ -4,11 +4,21 @@ import './MoviesCardList.css';
 
 import MovieCard from '../MoviesCard/MovieCard';
 
-function MoviesCardList ({ movies, type }) {
+function MoviesCardList ({ movies, type, notFound, amountMovie }) {
+
+
+    console.log(movies.length, notFound, amountMovie)
+
+
   return (
   <section className = "movie-cardlist">
     {
-      movies.map((movie) => (
+      (movies.length===0 && notFound)&&(<p>По вашему запросу ничего не найдено</p>)
+    }
+    {
+      movies
+      .filter((item, id)=> id < amountMovie)
+      .map((movie) => (
         <MovieCard
           key = {movie.movieId}
           type = {type}
