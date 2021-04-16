@@ -3,8 +3,6 @@ import React from 'react';
 import './MoviesCardList.css';
 
 import MovieCard from '../MoviesCard/MovieCard';
-import {BASE_URL} from '../../utils/Constants';
-
 
 function MoviesCardList ({ movies, type }) {
   return (
@@ -12,12 +10,12 @@ function MoviesCardList ({ movies, type }) {
     {
       movies.map((movie) => (
         <MovieCard
-          key = {movie.id}
+          key = {movie.movieId}
           type = {type}
-          cover = {movie.image ? `${BASE_URL}${movie.image.url}` : ''}
+          cover = {movie.image}
           duration = {movie.duration}
           title = {movie.nameRU}
-          trailer = {movie.trailerLink}
+          trailer = {movie.trailer}
 
         />
       ))

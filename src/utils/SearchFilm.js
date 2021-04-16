@@ -2,9 +2,10 @@ const shortFilmDuration = 50;
 
 function searchFilm (keyWord, isShort, movie) {
   const { duration, country, description, director,  nameEN, nameRU, year } = movie;
+  keyWord.toLowerCase();
   if(isShort) {
-    if (duration < shortFilmDuration)
-    return true;
+    if (duration > shortFilmDuration)
+    return false;
   }
   if(country&&country.toLowerCase().includes(keyWord)){
     return true;
@@ -24,6 +25,7 @@ function searchFilm (keyWord, isShort, movie) {
   if(year&&year.toLowerCase().includes(keyWord)){
     return true;
   }
+  return false
 }
 
 function findSuitableFilms (keyWord, isShort, movies) {

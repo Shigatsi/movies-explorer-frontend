@@ -15,6 +15,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 
 import getMovies from '../../utils/MoviesApi';
 import findSuitableFilms from '../../utils/SearchFilm';
+import {BASE_URL} from '../../utils/Constants'
 
 function App() {
 
@@ -22,16 +23,36 @@ function App() {
 
   //movies
 
-  const [movies, setMovies] = React.useState([]);
+  const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) ||[]);
+  const [findFilms, setFindFilms] = React.useState([]);
+
   const [isSearch, setIsSearch] = React.useState(false);
 
-  function handleFilmSearch (keyWord, isShort, movies) {
+  function movieConverter (movies) {
+    return movies.map((movie)=>{
+     return {
+        country: movie.country,
+        description: movie.description,
+        director: movie.director,
+        duration: movie.duration,
+        movieId: movie.id,
+        image: movie.image ? `${BASE_URL}${movie.image.url}` : '',
+        nameEN: movie.nameEN,
+        nameRU: movie.nameRU,
+        trailer: movie.trailerLink,
+        year: movie.year
+      }
+    })
+  }
+
+  function handleFilmSearch (keyWord, isShort) {
     setIsSearch(true)
     getMovies()
-      .then((movies)=> {
-        setMovies(movies)
-        findSuitableFilms(keyWord, isShort, movies)
-        console.log(keyWord, isShort)
+      .then((res)=> {
+        console.log(res)
+        setMovies(movieConverter(res));
+        localStorage.setItem("movies", JSON.stringify(movies));
+        setFindFilms(findSuitableFilms(keyWord, isShort, movies))
       })
     .catch(err => console.error(err))
     .finally(()=>setIsSearch(false))
@@ -49,8 +70,9 @@ function App() {
           <Header />
           <Movies
             onClick = {handleFilmSearch}
-            movies = {movies}
+            movies = {findFilms}
             isSearch = {isSearch}
+
 
           />
           <Footer />

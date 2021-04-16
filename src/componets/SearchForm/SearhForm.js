@@ -21,10 +21,8 @@ function SearchForm ({onClick}) {
   function handleSubmit(evt) {
     evt.preventDefault();
     if (keyWord === "") {
-      console.log('no keyWORD!' )
       setError(true)
     } else {
-      console.log('keyWORD! exist!!' )
       setError(false)
       onClick(keyWord, isShort)
     }

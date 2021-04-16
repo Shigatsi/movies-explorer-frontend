@@ -10,6 +10,9 @@ function Movies ( {onClick, movies, isSearch} ) {
 
   const width = useViewportWidth();
 
+
+
+
   let cardIncrement = 4;
   let moviesToShow = 12;
   // const [cardIncrement, setCardIncrement] = React.useState(4);
@@ -34,12 +37,6 @@ function Movies ( {onClick, movies, isSearch} ) {
         console.log('765')
         moviesToShow = 5;
       }
-
-
-
-
-  // movies = movies.length !== 0 ? movies.slice(0, moviesToShow) : '';
-
   return (
     <section className="movies">
       <SearchForm onClick = {onClick}/>
@@ -49,7 +46,7 @@ function Movies ( {onClick, movies, isSearch} ) {
         <>
           <MoviesCardList
           type = "movies"
-          movies = { movies.slice(0, moviesToShow)}
+          movies = {movies} //.slice(0, moviesToShow)
           />
           <button className = "movies__more">Ещё</button>
         </>
