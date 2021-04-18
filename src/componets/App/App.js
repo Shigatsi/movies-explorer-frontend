@@ -12,14 +12,43 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import getMovies from '../../utils/MoviesApi';
+import {
+  register,
+} from '../../utils/MainApi';
 import findSuitableFilms from '../../utils/SearchFilm';
 import {BASE_URL} from '../../utils/Constants'
 
+
 function App() {
 
+  const history = useHistory();
+
   //auth
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [succes, isSucces] = React.useState(false);
+
+  React.useEffect(() => {
+    if(loggedIn) {
+      history.push('/movies')
+    }
+  }, [loggedIn]);
+
+  function handleRegister (data) {
+
+    console.log('REGISTER', data)
+      const { name, email, password } = data;
+      register(name, email, password)
+        .then(()=>{
+          isSucces(true);
+          history.push('/sign-in')
+        })
+        .catch(()=>{
+          isSucces(false);
+        })
+  }
 
   //movies
 
@@ -68,7 +97,9 @@ function App() {
           <Main />
           <Footer />
         </Route>
-        <Route path = '/movies'>
+        <ProtectedRoute
+          loggedIn={loggedIn}
+          path = '/movies'>
           <Header />
           <Movies
             onClick = {handleFilmSearch}
@@ -77,18 +108,24 @@ function App() {
             notFound = {notFound}
           />
           <Footer />
-        </Route>
-        <Route path = '/saved-movies'>
+        </ProtectedRoute>
+        <ProtectedRoute
+          loggedIn={loggedIn}
+          path = '/saved-movies'>
           <Header />
           <SavedMovies />
           <Footer />
-        </Route>
-        <Route path = '/profile'>
+        </ProtectedRoute>
+        <ProtectedRoute
+          loggedIn={loggedIn}
+          path = '/profile'>
           <Header />
           <Profile />
-        </Route>
+        </ProtectedRoute>
         <Route path = '/sign-up'>
-          <Register />
+          <Register
+            onRegister = {handleRegister}
+          />
         </Route>
         <Route path = '/sign-in'>
           <Login />

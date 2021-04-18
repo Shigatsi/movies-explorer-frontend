@@ -5,10 +5,35 @@ import './Register.css';
 
 import FormHeader from '../FormHeader/FormHeader';
 
-function Register () {
+function Register ({ onRegister, ...props }) {
+  const [data, setUserData] = React.useState({
+    name: '',
+    email: '',
+    password: ''
+  })
+
+  function handleChange (e) {
+    const {name, value} = e.target;
+    setUserData({
+      ...data,
+      [name]:value
+    })
+  }
+
+  function hadleSubmit (e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+    if(data) {
+      onRegister(data);
+      console.log(data)
+    }
+    return
+  }
+
+
   return (
     <section className="register">
-      <form className = "register__form">
+      <form onSubmit={hadleSubmit} className = "register__form">
         <FormHeader
           subtitle = 'Добро пожаловать!'
         />
@@ -24,8 +49,8 @@ function Register () {
               pattern="[а-яёА-ЯЁA-Za-z \-]*"
               required
               className="form__input"
-              // value={values.name}
-              // onChange={handleChange}
+              value={data.name}
+              onChange={handleChange}
               />
           </li>
           <li className= "form__item">
@@ -38,8 +63,8 @@ function Register () {
               maxLength="40"
               required
               className="form__input"
-              // value={values.email}
-              // onChange={handleChange}
+              value={data.email}
+              onChange={handleChange}
             />
           </li>
           <li className="form__item">
@@ -52,16 +77,17 @@ function Register () {
               maxLength="40"
               required
               className="form__input"
-              // value={values.email}
-              // onChange={handleChange}
+              value={data.password}
+              onChange={handleChange}
             />
             <span className = "form__input-error form__input-error_hidden">Что-то пошло не так...</span>
           </li>
         </ul>
-        <button className="form__submit-btn form__submit-btn_type_register">Зарегистрироваться</button>
+        <button
+          className="form__submit-btn form__submit-btn_type_register">Зарегистрироваться</button>
         <p className="form__text">
         Уже зарегистрированы?
-          <Link className="form__link" to = "/sign-up">&nbsp;Войти</Link>
+          <Link className="form__link" to = "/sign-in">&nbsp;Войти</Link>
         </p>
       </form>
     </section>
