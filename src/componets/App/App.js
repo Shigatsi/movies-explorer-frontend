@@ -117,7 +117,6 @@ function App() {
 
   return (
     <div className="page">
-
       <Switch>
         <Route exact path = '/'>
           <Header loggedIn= {loggedIn}/>
@@ -137,20 +136,23 @@ function App() {
           />
           <Footer />
         </Route>
-
-        <ProtectedRoute
-          loggedIn={loggedIn}
-          path = '/saved-movies'>
+        <Route path = '/saved-movies'>
           <Header loggedIn= {loggedIn}/>
-          <SavedMovies />
+          <ProtectedRoute
+            loggedIn={loggedIn}
+            path = '/saved-movies'
+            component = {SavedMovies}
+          />
           <Footer />
-        </ProtectedRoute>
-        <ProtectedRoute
-          loggedIn={loggedIn}
-          path = '/profile'>
+        </Route>
+        <Route path = '/profile'>
           <Header loggedIn= {loggedIn}/>
-          <Profile />
-        </ProtectedRoute>
+          <ProtectedRoute
+            loggedIn={loggedIn}
+            path = '/profile'
+            component = {Profile}
+          />
+        </Route>
         <Route path = '/sign-up'>
           <Register
             onRegister = {handleRegister}
