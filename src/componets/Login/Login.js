@@ -5,10 +5,33 @@ import './Login.css';
 
 import FormHeader from '../FormHeader/FormHeader';
 
-function Login () {
+function Login ({ onLogin, ...props}) {
+
+  const [data, setData] = React.useState({
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setData({
+      ...data,
+      [name] : value
+    })
+  }
+
+  function handleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+    if(data) {
+      onLogin(data);
+    }
+    return
+  }
+
   return (
     <section className="login">
-      <form className = "login__form">
+      <form onSubmit = {handleSubmit} className = "login__form">
         <FormHeader
           subtitle = 'Рады видеть!'
         />
@@ -24,8 +47,8 @@ function Login () {
               maxLength="40"
               required
               className="form__input"
-              // value={values.email}
-              // onChange={handleChange}
+              value={data.email}
+              onChange={handleChange}
             />
           <label className="form__label">Password</label>
             <input
@@ -36,8 +59,8 @@ function Login () {
               maxLength="40"
               required
               className="form__input"
-              // value={values.email}
-              // onChange={handleChange}
+              value={data.password}
+              onChange={handleChange}
             />
             <span className = "form__input-error form__input-error_hidden">Что-то пошло не так...</span>
           </li>

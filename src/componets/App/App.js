@@ -17,6 +17,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import getMovies from '../../utils/MoviesApi';
 import {
   register,
+  authorize,
+  getToken
 } from '../../utils/MainApi';
 import findSuitableFilms from '../../utils/SearchFilm';
 import {BASE_URL} from '../../utils/Constants'
@@ -37,8 +39,6 @@ function App() {
   }, [loggedIn]);
 
   function handleRegister (data) {
-
-    console.log('REGISTER', data)
       const { name, email, password } = data;
       register(name, email, password)
         .then(()=>{
@@ -49,6 +49,32 @@ function App() {
           isSucces(false);
         })
   }
+
+  function handleLogin (data) {
+    const {email,password} =data;
+    authorize(email, password)
+    .then((res)=>{
+      localStorage.setItem('token', res.token)
+      setLoggedIn(true)
+      history.push('/movies')
+    })
+    .catch(err => console.error(err));//выведем ошибку;
+  }
+
+  function tockenCheck () {
+    const jwt = localStorage.getItem('token');
+    if (jwt) {
+      getToken(jwt)
+      .then((res)=> {
+        setLoggedIn(true)
+      })
+      .catch(err => console.error(err));//выведем ошибку;
+    }
+  }
+
+  React.useEffect(() => {
+    tockenCheck();
+  }, []);
 
   //movies
 
@@ -91,35 +117,38 @@ function App() {
 
   return (
     <div className="page">
+
       <Switch>
         <Route exact path = '/'>
-          <Header />
+          <Header loggedIn= {loggedIn}/>
           <Main />
           <Footer />
         </Route>
-        <ProtectedRoute
-          loggedIn={loggedIn}
-          path = '/movies'>
-          <Header />
-          <Movies
+        <Route path = '/movies'>
+          <Header loggedIn= {loggedIn}/>
+          <ProtectedRoute
+            loggedIn={loggedIn}
+            path = '/movies'
             onClick = {handleFilmSearch}
             movies = {findFilms}
             isSearch = {isSearch}
             notFound = {notFound}
+            component = {Movies}
           />
           <Footer />
-        </ProtectedRoute>
+        </Route>
+
         <ProtectedRoute
           loggedIn={loggedIn}
           path = '/saved-movies'>
-          <Header />
+          <Header loggedIn= {loggedIn}/>
           <SavedMovies />
           <Footer />
         </ProtectedRoute>
         <ProtectedRoute
           loggedIn={loggedIn}
           path = '/profile'>
-          <Header />
+          <Header loggedIn= {loggedIn}/>
           <Profile />
         </ProtectedRoute>
         <Route path = '/sign-up'>
@@ -128,7 +157,9 @@ function App() {
           />
         </Route>
         <Route path = '/sign-in'>
-          <Login />
+          <Login
+            onLogin = {handleLogin}
+          />
         </Route>
         <Route path = '*'>
           <PageNotFound />

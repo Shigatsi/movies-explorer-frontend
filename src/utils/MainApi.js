@@ -18,6 +18,30 @@ export const register = ( name, email, password ) => {
   .then(checkRes)
 }
 
+export const authorize = (email, password) => {
+  return fetch(`${baseUrlLocal}/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({email, password})
+  })
+  .then(checkRes);
+};
+
+//получаем токен
+export const getToken = (token) => {
+  return fetch(`${baseUrlLocal}/users/me`, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization" : `Bearer ${token}`
+    }
+  })
+  .then(checkRes);
+}
+
+
 //конструктор API
 class Api {
   constructor ({baseUrl, headers}) {

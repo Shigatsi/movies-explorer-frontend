@@ -8,32 +8,27 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation';
 import useViewportWidth from '../../utils/useViewportWidth';
 
-function Header () {
+function Header ({ loggedIn }) {
 
   const { width } = useViewportWidth();
 
   return (
     <header className= "header">
-      <Switch>
-        <Route exact path = '/'>
-          <img className="header__logo" src={movieExplorerLogo} alt="Логотип Movie Explorer"/>
-          <nav className= "header__nav header__nav_type_default">
-            <Link to = "sign-up" className = "header__default-link header__link_type_register">Регистрация</Link>
-            <Link to = "sign-in" className = "header__default-link header__link_type_login">Войти</Link>
-          </nav>
-        </Route>
-        <Route path = {['/movies', '/saved-movies', '/profile']}>
+      {(loggedIn)? (
+        <>
           <div className= "header__left-side">
-          <img className="header__logo" src={movieExplorerLogo} alt="Логотип Me Explorer"/>
-          { (width >= 786) && (
-              <nav className= "header__nav header__nav_type_authorized">
-              <Link to = "movies" className = "header__authorized-link">Фильмы</Link>
-              <Link to = "saved-movies" className= "header__authorized-link">Сохранённые Фильмы</Link>
-            </nav>
-            )
-          }
-        </div>
-        {
+            <Link to = "/">
+              <img className="header__logo" src={movieExplorerLogo} alt="Логотип Me Explorer"/>
+            </Link>
+            { (width >= 786) && (
+                <nav className= "header__nav header__nav_type_authorized">
+                <Link to = "movies" className = "header__authorized-link">Фильмы</Link>
+                <Link to = "saved-movies" className= "header__authorized-link">Сохранённые Фильмы</Link>
+              </nav>
+              )
+            }
+          </div>
+          {
           (width >= 786) ? (
             <Link to = "profile" className = "header__authorized-link header__link_type_profile">
               <figure className = "header__profile">
@@ -45,8 +40,16 @@ function Header () {
            <Navigation />
           )
         }
-        </Route>
-      </Switch>
+        </>
+      ):(
+        <>
+        <img className="header__logo" src={movieExplorerLogo} alt="Логотип Movie Explorer"/>
+          <nav className= "header__nav header__nav_type_default">
+            <Link to = "sign-up" className = "header__default-link header__link_type_register">Регистрация</Link>
+            <Link to = "sign-in" className = "header__default-link header__link_type_login">Войти</Link>
+          </nav>
+        </>
+      )}
     </header>
   );
 }
