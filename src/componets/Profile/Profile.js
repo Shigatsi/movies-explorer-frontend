@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 
 import useFormWithValidation from '../Validation/Validation';
 import './Profile.css';
@@ -22,6 +23,15 @@ function Profile({  }) {
   function handleSubmit(e) {
     e.preventDefault();
   }
+
+  //выход из приложения
+  const history = useHistory();
+
+  function handleLogOut () {
+    localStorage.removeItem('token');
+    history.push('/sign-in')
+  }
+
   return(
     <div className="profile">
       <form onSubmit={handleSubmit} className="profile__form" noValidate>
@@ -78,7 +88,13 @@ function Profile({  }) {
         (!isEdit)&&(
           <>
             <button className= "profile__btn profile__edit-btn" onClick={toggleEditState}>Редактировать</button>
-            <button id="profile_logout-btn"className=" profile__btn profile__logout-btn">Выйти из аккаунта</button>
+            <button
+              onClick={handleLogOut}
+              id="profile_logout-btn"
+              className=" profile__btn profile__logout-btn"
+            >
+               Выйти из аккаунта
+            </button>
           </>
         )
       }
