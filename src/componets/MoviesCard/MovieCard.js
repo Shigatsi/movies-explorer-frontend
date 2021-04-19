@@ -11,14 +11,10 @@ function MovieCard ( { cover, title, duration, type, trailer, movie, onAddMovie 
     setIsAdded(!isAdded);
   }
 
-
-
   function handleSaveBtnClick () {
     onAddMovie(movie)
     toggleAddedState()
   }
-
-
 
   return (
     <div className ="movie-card">

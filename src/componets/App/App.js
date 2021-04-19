@@ -22,6 +22,7 @@ import {
   getToken,
   getUserData,
   editUserData,
+  getSavedMovies,
   addFilm
 } from '../../utils/MainApi';
 import findSuitableFilms from '../../utils/SearchFilm';
@@ -30,17 +31,24 @@ import {BASE_URL} from '../../utils/Constants'
 
 function App() {
 
+
   const history = useHistory();
 
   //auth
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [succes, isSucces] = React.useState(false);
 
+
   React.useEffect(() => {
     if(loggedIn) {
       history.push('/movies')
+
     }
   }, [loggedIn]);
+
+  React.useEffect(() => {
+    tockenCheck();
+  }, []);
 
   function handleRegister (data) {
       const { name, email, password } = data;
@@ -55,47 +63,51 @@ function App() {
   }
 
   function handleLogin (data) {
-    const {email,password} =data;
+    const {email,password} = data;
     authorize(email, password)
     .then((res)=>{
       localStorage.setItem('token', res.token)
       setLoggedIn(true)
       history.push('/movies')
+      window.location.reload();//обновляю страницу, чтобы новый юзер отобразился
     })
-    .catch(err => console.error(err));//выведем ошибку;
+    .catch(err => console.error(err))//выведем ошибку;
+    .finally(()=>{
+      handleUserData ();
+      handleGetSavedMovies();
+    })
   }
 
   function tockenCheck () {
     const jwt = localStorage.getItem('token');
     if (jwt) {
       getToken(jwt)
-      .then((res)=> {
+      .then(()=> {
         setLoggedIn(true)
       })
-      .catch(err => console.error(err));//выведем ошибку;
+      .catch(err => console.error(err))//выведем ошибку;
+      .finally(()=>{
+        handleUserData ();
+        handleGetSavedMovies();
+      })
     }
+
   }
 
-  React.useEffect(() => {
-    tockenCheck();
-  }, []);
 
-  const [CurrentUser, setCurrentUser] = React.useState({})
+  const [currentUser, setCurrentUser] = React.useState({})
 
-  React.useEffect(()=>{
+  function handleUserData () {
     getUserData()
-    .then((userData)=>{
-      setCurrentUser(userData.data);
-    })
-    .catch(err => console.error(err));//выведем ошибку
-  }, [])
+      .then((userData)=>{
+        setCurrentUser(userData.data);
+      })
+      .catch(err => console.error(err));//выведем ошибку
+  }
 
   function handleProfileEdit (currentUser) {
-    console.log('handleProfileEdit ', currentUser)
     editUserData(currentUser)
-
     .then((userData)=>{
-
       setCurrentUser(userData.data);
     })
     .catch(err => console.error(err));//выведем ошибку;
@@ -103,6 +115,7 @@ function App() {
 
   //movies
   const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) ||[]);
+  const [savedMovies, setSavedMovies] =  React.useState([]);
   const [findFilms, setFindFilms] = React.useState([]);
 
   const [isSearch, setIsSearch] = React.useState(false);
@@ -130,7 +143,6 @@ function App() {
     setIsSearch(true)
     getMovies()
       .then((res)=> {
-        console.log(res)
         setMovies(movieConverter(res));
         localStorage.setItem("movies", JSON.stringify(movies));
         setFindFilms(findSuitableFilms(keyWord, isShort, movies));
@@ -140,12 +152,18 @@ function App() {
     .finally(()=>setIsSearch(false))
   }
 
+  function handleGetSavedMovies() {
+    getSavedMovies()
+    .then((res)=>{
+      setSavedMovies(res.data);
+    })
+  }
+
+
   function handleMovieAdd (movie) {
-    console.log("App", movie)
-    console.log(typeof(movie.movieId))
     addFilm(movie)
     .then((res)=>{
-      console.log(res)
+      setSavedMovies((movies)=>[...movies, res])
     })
   }
 
@@ -157,7 +175,7 @@ function App() {
           <Main />
           <Footer />
         </Route>
-        <CurrentUserContext.Provider value={CurrentUser}>
+        <CurrentUserContext.Provider value={currentUser}>
           <Route path = '/movies'>
             <Header loggedIn= {loggedIn}/>
             <ProtectedRoute
@@ -169,6 +187,7 @@ function App() {
               notFound = {notFound}
               component = {Movies}
               onAddMovie={handleMovieAdd}
+              // savedMovies={savedMovies}
             />
             <Footer />
           </Route>
@@ -178,6 +197,7 @@ function App() {
               loggedIn={loggedIn}
               path = '/saved-movies'
               component = {SavedMovies}
+              savedMovies={savedMovies}
             />
             <Footer />
           </Route>

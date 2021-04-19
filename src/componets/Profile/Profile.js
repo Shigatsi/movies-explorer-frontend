@@ -52,7 +52,7 @@ function Profile({ onEditProfile }) {
   return(
     <div className="profile">
       <form onSubmit={handleSubmit} className="profile__form" noValidate>
-        <h2 className= "profile__form-subtitle">Привет, {values.name}!</h2>
+        <h2 className= "profile__form-subtitle">Привет, {name}!</h2>
         <ul className="profile__form-items">
           <li className="profile__form-item">
             <label className="profile__form-label">Имя</label>
@@ -66,7 +66,7 @@ function Profile({ onEditProfile }) {
               required
               readOnly={!isEdit}
               className="profile__form-input"
-              value={values.name}
+              value={name}
               onChange={handleChange}
               />
           </li>
@@ -82,7 +82,7 @@ function Profile({ onEditProfile }) {
               pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
               readOnly={!isEdit}
               className="profile__form-input"
-              value={values.email}
+              value={email}
               onChange={handleChange}/>
           </li>
         </ul>

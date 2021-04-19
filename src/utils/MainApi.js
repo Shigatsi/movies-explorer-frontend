@@ -69,38 +69,52 @@ export const editUserData = (currentUser) => {
     .then(checkRes)
 }
 
-//сохранить фильм
-
-export const addFilm = ({country,
-  description,
-  director,
-  duration,
-  movieId,
-  image,
-  thumbnail,
-  nameEN,
-  nameRU,
-  trailer,
-  year}) => {
+//получить сохранённые фильмы
+export const getSavedMovies = () => {
   return fetch(`${baseUrlLocal}/movies`, {
-  method: 'POST',
-  headers: {
-    "Content-Type": "application/json",
-    'authorization': `Bearer ${localStorage.getItem('token')}`
-  },
-  body: JSON.stringify({
-    country:country,
-    description:description,
-    director:director,
-    duration:duration,
-    movieId:String(movieId),
-    image:image,
-    thumbnail:thumbnail,
-    nameEN:nameEN,
-    nameRU:nameRU,
-    trailer:trailer,
-    year:year
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      'authorization': `Bearer ${localStorage.getItem('token')}`
+    },
   })
-})
+  .then(checkRes);
+}
 
+//сохранить фильм
+export const addFilm =
+  ({
+    country,
+    description,
+    director,
+    duration,
+    movieId,
+    image,
+    thumbnail,
+    nameEN,
+    nameRU,
+    trailer,
+    year
+  }) => {
+    return fetch(`${baseUrlLocal}/movies`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      'authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+    body: JSON.stringify({
+      country:country,
+      description:description,
+      director:director,
+      duration:duration,
+      movieId:String(movieId),
+      image:image,
+      thumbnail:thumbnail,
+      nameEN:nameEN,
+      nameRU:nameRU,
+      trailer:trailer,
+      year:year
+    })
+    })
+    .then(checkRes)
 }
