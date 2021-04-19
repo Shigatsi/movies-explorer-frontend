@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader'
 import useViewportWidth from '../../utils/useViewportWidth';
 
-function Movies ( {onClick, movies, isSearch, notFound} ) {
+function Movies ( {onClick, movies, isSearch, notFound,  onAddMovie } ) {
 
   const {width} = useViewportWidth();
 
@@ -47,6 +47,7 @@ function Movies ( {onClick, movies, isSearch, notFound} ) {
           movies = {movies} //.slice(0, moviesToShow+moreMovies)
           notFound = {notFound}
           amountMovie = {moviesToShow+moreMovies}
+          onAddMovie={onAddMovie}
           />
          {(moviesToShow+moreMovies < movies.length)&& <button className = "movies__more" onClick={handleMoreBtn}>Ещё</button>}
         </>

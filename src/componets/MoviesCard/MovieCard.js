@@ -3,14 +3,22 @@ import React from 'react';
 import './MovieCard.css';
 import convertDuration from '../../utils/DurationConverter';
 
-function MovieCard ( { cover, title, duration, type, trailer } ) {
+function MovieCard ( { cover, title, duration, type, trailer, movie, onAddMovie } ) {
 
   const [isAdded, setIsAdded] = React.useState(false);
 
   const toggleAddedState = () => {
     setIsAdded(!isAdded);
-    console.log(isAdded)
   }
+
+
+
+  function handleSaveBtnClick () {
+    onAddMovie(movie)
+    toggleAddedState()
+  }
+
+
 
   return (
     <div className ="movie-card">
@@ -19,7 +27,7 @@ function MovieCard ( { cover, title, duration, type, trailer } ) {
           <img className = "movie-card__cover" src = {cover} alt = {title} /></a>
           {
             (!isAdded&&type==='movies') && (
-              <button className="movie-card__btn movie-card__btn_type_save" onClick={toggleAddedState}>Сохранить</button>
+              <button className="movie-card__btn movie-card__btn_type_save" onClick={handleSaveBtnClick}>Сохранить</button>
             )
           }
           {

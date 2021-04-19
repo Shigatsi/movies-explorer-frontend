@@ -53,7 +53,7 @@ export const getUserData = () => {
   .then(checkRes)
 }
 
-// //редактируем данные пользователя
+//редактируем данные пользователя
 export const editUserData = (currentUser) => {
   return fetch(`${baseUrlLocal}/users/me`, {
     method: 'PATCH',
@@ -67,4 +67,40 @@ export const editUserData = (currentUser) => {
     })
   })
     .then(checkRes)
+}
+
+//сохранить фильм
+
+export const addFilm = ({country,
+  description,
+  director,
+  duration,
+  movieId,
+  image,
+  thumbnail,
+  nameEN,
+  nameRU,
+  trailer,
+  year}) => {
+  return fetch(`${baseUrlLocal}/movies`, {
+  method: 'POST',
+  headers: {
+    "Content-Type": "application/json",
+    'authorization': `Bearer ${localStorage.getItem('token')}`
+  },
+  body: JSON.stringify({
+    country:country,
+    description:description,
+    director:director,
+    duration:duration,
+    movieId:String(movieId),
+    image:image,
+    thumbnail:thumbnail,
+    nameEN:nameEN,
+    nameRU:nameRU,
+    trailer:trailer,
+    year:year
+  })
+})
+
 }

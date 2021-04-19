@@ -21,7 +21,8 @@ import {
   authorize,
   getToken,
   getUserData,
-  editUserData
+  editUserData,
+  addFilm
 } from '../../utils/MainApi';
 import findSuitableFilms from '../../utils/SearchFilm';
 import {BASE_URL} from '../../utils/Constants'
@@ -114,8 +115,9 @@ function App() {
         description: movie.description,
         director: movie.director,
         duration: movie.duration,
-        movieId: movie.id,
-        image: movie.image ? `${BASE_URL}${movie.image.url}` : '',
+        movieId: String(movie.id),
+        thumbnail:movie.image ? `${BASE_URL}${movie.image.url}` : '',
+        image: movie.image ? `${BASE_URL}${movie.image.formats.thumbnail.url}` : '',
         nameEN: movie.nameEN,
         nameRU: movie.nameRU,
         trailer: movie.trailerLink,
@@ -138,6 +140,15 @@ function App() {
     .finally(()=>setIsSearch(false))
   }
 
+  function handleMovieAdd (movie) {
+    console.log("App", movie)
+    console.log(typeof(movie.movieId))
+    addFilm(movie)
+    .then((res)=>{
+      console.log(res)
+    })
+  }
+
   return (
     <div className="page">
       <Switch>
@@ -157,6 +168,7 @@ function App() {
               isSearch = {isSearch}
               notFound = {notFound}
               component = {Movies}
+              onAddMovie={handleMovieAdd}
             />
             <Footer />
           </Route>
