@@ -1,32 +1,49 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useFormWithValidation from '../Validation/Validation';
 import './Profile.css';
 
-function Profile({  }) {
+function Profile({ onEditProfile }) {
 
   const [isEdit, setIsEdit] = React.useState(false);
 
-  const toggleEditState = () => {
-    setIsEdit(!isEdit);
-    console.log(isEdit)
-  }
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const[name, setName] = React.useState(currentUser.name);
+  const [email, setEmail] = React.useState(currentUser.email);
+
+  React.useEffect(() => {
+    setName(currentUser.name)
+    setEmail(currentUser.email)
+  }, [currentUser]);
+
+
 
   const {values = {
-    name: 'Евгения',
-    email: 'jane@test.com'
+    name: name,
+    email: email
   }, handleChange, errors, isValid, resetForm} = useFormWithValidation()
 
   console.log(values, errors)
 
+  const toggleEditState = () => {
+    setIsEdit(!isEdit);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+    // Передаём значения управляемых компонентов во внешний обработчик
+    onEditProfile({
+      name: name,
+      email: email
+    })
+    toggleEditState ();
   }
 
   //выход из приложения
   const history = useHistory();
-
   function handleLogOut () {
     localStorage.removeItem('token');
     history.push('/sign-in')
@@ -62,6 +79,7 @@ function Profile({  }) {
               minLength="3"
               maxLength="40"
               required
+              pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
               readOnly={!isEdit}
               className="profile__form-input"
               value={values.email}
@@ -70,16 +88,14 @@ function Profile({  }) {
         </ul>
         {
         (isEdit)&&(errors)&&(
-            <span className='profile__input-error' id='form_input-error'>{errors.name}</span>
+            <span className='profile__input-error' id='form_input-error'>{errors.name, errors.email}</span>
         )
       }
         {
           (isEdit)&&(
             <button
               type="submit"
-              className = {`profile__save-btn ${errors.name ? "profile__save-btn_type_disabled" : ""}`}
-              onSubmit={handleSubmit}
-              onClick={toggleEditState}
+              className = {`profile__save-btn ${errors.name||errors.email ? "profile__save-btn_type_disabled" : ""}`}
             >Сохранить</button>
           )
         }

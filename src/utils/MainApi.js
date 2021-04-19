@@ -41,33 +41,30 @@ export const getToken = (token) => {
   .then(checkRes);
 }
 
-
-//конструктор API
-class Api {
-  constructor ({baseUrl, headers}) {
-    this.baseUrl = baseUrl;
-    this.headers = headers;
-  }
-
-  //приватный метод проверки ответа сервера и преобразование из json
-  _transformResJson (res) {
-    if (res.ok) {
-      return res.json();
+//получаем информацию о пользователе
+export const getUserData = () => {
+  return fetch(`${baseUrlLocal}/users/me`, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      'authorization': `Bearer ${localStorage.getItem('token')}`
     }
-    // если ошибка, отклоняем промис
-    return Promise.reject(`Ошибка: ${res.status}`);
-  }
+  })
+  .then(checkRes)
+}
 
-  // публичный метод загрузки информации о пользователе
-  getUserData () {
-    return fetch(this.baseUrl + '/users/me', {
-      headers: {
-        authorization: this.headers
-      }
+// //редактируем данные пользователя
+export const editUserData = (currentUser) => {
+  return fetch(`${baseUrlLocal}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": "application/json",
+      'authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+    body: JSON.stringify({
+      name: currentUser.name,
+      email: currentUser.email
     })
-
-    .then(this._transformResJson)
-  }
-
-
+  })
+    .then(checkRes)
 }

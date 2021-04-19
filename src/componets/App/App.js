@@ -13,12 +13,15 @@ import Register from '../Register/Register';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import getMovies from '../../utils/MoviesApi';
 import {
   register,
   authorize,
-  getToken
+  getToken,
+  getUserData,
+  editUserData
 } from '../../utils/MainApi';
 import findSuitableFilms from '../../utils/SearchFilm';
 import {BASE_URL} from '../../utils/Constants'
@@ -76,8 +79,28 @@ function App() {
     tockenCheck();
   }, []);
 
-  //movies
+  const [CurrentUser, setCurrentUser] = React.useState({})
 
+  React.useEffect(()=>{
+    getUserData()
+    .then((userData)=>{
+      setCurrentUser(userData.data);
+    })
+    .catch(err => console.error(err));//выведем ошибку
+  }, [])
+
+  function handleProfileEdit (currentUser) {
+    console.log('handleProfileEdit ', currentUser)
+    editUserData(currentUser)
+
+    .then((userData)=>{
+
+      setCurrentUser(userData.data);
+    })
+    .catch(err => console.error(err));//выведем ошибку;
+  }
+
+  //movies
   const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) ||[]);
   const [findFilms, setFindFilms] = React.useState([]);
 
@@ -123,49 +146,52 @@ function App() {
           <Main />
           <Footer />
         </Route>
-        <Route path = '/movies'>
-          <Header loggedIn= {loggedIn}/>
-          <ProtectedRoute
-            loggedIn={loggedIn}
-            path = '/movies'
-            onClick = {handleFilmSearch}
-            movies = {findFilms}
-            isSearch = {isSearch}
-            notFound = {notFound}
-            component = {Movies}
-          />
-          <Footer />
-        </Route>
-        <Route path = '/saved-movies'>
-          <Header loggedIn= {loggedIn}/>
-          <ProtectedRoute
-            loggedIn={loggedIn}
-            path = '/saved-movies'
-            component = {SavedMovies}
-          />
-          <Footer />
-        </Route>
-        <Route path = '/profile'>
-          <Header loggedIn= {loggedIn}/>
-          <ProtectedRoute
-            loggedIn={loggedIn}
-            path = '/profile'
-            component = {Profile}
-          />
-        </Route>
-        <Route path = '/sign-up'>
-          <Register
-            onRegister = {handleRegister}
-          />
-        </Route>
-        <Route path = '/sign-in'>
-          <Login
-            onLogin = {handleLogin}
-          />
-        </Route>
+        <CurrentUserContext.Provider value={CurrentUser}>
+          <Route path = '/movies'>
+            <Header loggedIn= {loggedIn}/>
+            <ProtectedRoute
+              loggedIn={loggedIn}
+              path = '/movies'
+              onClick = {handleFilmSearch}
+              movies = {findFilms}
+              isSearch = {isSearch}
+              notFound = {notFound}
+              component = {Movies}
+            />
+            <Footer />
+          </Route>
+          <Route path = '/saved-movies'>
+            <Header loggedIn= {loggedIn}/>
+            <ProtectedRoute
+              loggedIn={loggedIn}
+              path = '/saved-movies'
+              component = {SavedMovies}
+            />
+            <Footer />
+          </Route>
+          <Route path = '/profile'>
+            <Header loggedIn= {loggedIn}/>
+            <ProtectedRoute
+              loggedIn={loggedIn}
+              path = '/profile'
+              component = {Profile}
+              onEditProfile = {handleProfileEdit}
+            />
+          </Route>
+          <Route path = '/sign-up'>
+            <Register
+              onRegister = {handleRegister}
+            />
+          </Route>
+          <Route path = '/sign-in'>
+            <Login
+              onLogin = {handleLogin}
+            />
+          </Route>
+        </CurrentUserContext.Provider>
         <Route path = '*'>
-          <PageNotFound />
-        </Route>
+            <PageNotFound />
+          </Route>
       </Switch>
     </div>
   );

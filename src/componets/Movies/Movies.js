@@ -17,16 +17,13 @@ function Movies ( {onClick, movies, isSearch, notFound} ) {
 
   React.useEffect (()=> {
     if (width <= 1280) {
-      console.log('1280')
       setCardIncrement(3)
     }
     if (width <= 1024) {
-      console.log('1024')
       setCardIncrement (2)
       setMoviesToSow(8);
     }
     if (width <= 765) {
-      console.log('765')
       setMoviesToSow(5);
     }
   }, [width])

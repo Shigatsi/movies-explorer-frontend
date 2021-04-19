@@ -6,10 +6,6 @@ import MovieCard from '../MoviesCard/MovieCard';
 
 function MoviesCardList ({ movies, type, notFound, amountMovie }) {
 
-
-    console.log(movies.length, notFound, amountMovie)
-
-
   return (
   <section className = "movie-cardlist">
     {
