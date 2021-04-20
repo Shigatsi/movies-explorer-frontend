@@ -23,7 +23,8 @@ import {
   getUserData,
   editUserData,
   getSavedMovies,
-  addFilm
+  addFilm,
+  deleteMovie
 } from '../../utils/MainApi';
 import findSuitableFilms from '../../utils/SearchFilm';
 import {BASE_URL} from '../../utils/Constants'
@@ -152,6 +153,8 @@ function App() {
     .finally(()=>setIsSearch(false))
   }
 
+
+
   function handleGetSavedMovies() {
     getSavedMovies()
     .then((res)=>{
@@ -161,11 +164,30 @@ function App() {
 
 
   function handleMovieAdd (movie) {
-    addFilm(movie)
-    .then((res)=>{
-      setSavedMovies((movies)=>[...movies, res])
-    })
+    if(movie.movieId!=savedMovies.some(m=> m.movieId)){
+      return addFilm(movie)
+      .then((res)=>{
+        setSavedMovies((movies)=>[...movies, res])
+        console.log(savedMovies)
+      })
+      .catch(err => console.error(err));//выведем ошибку
+    }
   }
+
+function handleDeleteMovie(movie) {
+  debugger
+  const id = movie._id || movie.movieId
+  // deleteMovie(movie._id)
+  deleteMovie(id)
+  .then((res)=>{
+    console.log('handleDeleteMovie', res)
+    setSavedMovies(
+      savedMovies.filter(m=>{ return m._id!==movie._id}),
+      savedMovies.filter(m=>{ return m.movieId!==movie.movieId})
+    )
+    })
+    .catch(err => console.error(err));//выведем ошибку
+}
 
   return (
     <div className="page">
@@ -181,13 +203,13 @@ function App() {
             <ProtectedRoute
               loggedIn={loggedIn}
               path = '/movies'
-              onClick = {handleFilmSearch}
+              onSearch = {handleFilmSearch}
               movies = {findFilms}
               isSearch = {isSearch}
               notFound = {notFound}
               component = {Movies}
               onAddMovie={handleMovieAdd}
-              // savedMovies={savedMovies}
+              onMovieDelete={handleDeleteMovie}
             />
             <Footer />
           </Route>
@@ -198,6 +220,7 @@ function App() {
               path = '/saved-movies'
               component = {SavedMovies}
               savedMovies={savedMovies}
+              onMovieDelete={handleDeleteMovie}
             />
             <Footer />
           </Route>

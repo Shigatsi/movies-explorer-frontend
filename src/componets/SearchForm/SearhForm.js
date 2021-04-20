@@ -4,7 +4,7 @@ import './SearchForm.css';
 import searchBtn from '../../images/search_btn.svg'
 import Switcher from '../Switcher/Switcher'
 
-function SearchForm ({onClick}) {
+function SearchForm ({onSearch}) {
 
   const [keyWord, setKeyWord] = React.useState("");
   const [isShort, setIsShort] = React.useState(false);
@@ -24,7 +24,7 @@ function SearchForm ({onClick}) {
       setError(true)
     } else {
       setError(false)
-      onClick(keyWord, isShort)
+      onSearch(keyWord, isShort)
     }
   }
 

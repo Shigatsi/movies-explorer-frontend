@@ -118,3 +118,15 @@ export const addFilm =
     })
     .then(checkRes)
 }
+
+//удолить фильм
+export const deleteMovie = (id)=> {
+  return fetch(`${baseUrlLocal}/movies/${id}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+      'authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+  })
+  .then(checkRes);
+}

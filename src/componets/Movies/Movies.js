@@ -6,14 +6,13 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader'
 import useViewportWidth from '../../utils/useViewportWidth';
 
-function Movies ( {onClick, movies, isSearch, notFound,  onAddMovie } ) {
+function Movies ( { onSearch, movies, isSearch, notFound,  onAddMovie, onMovieDelete } ) {
 
   const {width} = useViewportWidth();
 
   const [cardIncrement, setCardIncrement] = React.useState(4);
   const [moviesToShow, setMoviesToSow] = React.useState(12);
   const [moreMovies, setMoreMovies] = React.useState(0);
-
 
   React.useEffect (()=> {
     if (width <= 1280) {
@@ -37,7 +36,7 @@ function Movies ( {onClick, movies, isSearch, notFound,  onAddMovie } ) {
 
   return (
     <section className="movies">
-      <SearchForm onClick = {onClick}/>
+      <SearchForm onSearch = {onSearch}/>
       {(isSearch)? (
         <Preloader />
       ): (
@@ -48,6 +47,7 @@ function Movies ( {onClick, movies, isSearch, notFound,  onAddMovie } ) {
           notFound = {notFound}
           amountMovie = {moviesToShow+moreMovies}
           onAddMovie={onAddMovie}
+          onMovieDelete={onMovieDelete}
           />
          {(moviesToShow+moreMovies < movies.length)&& <button className = "movies__more" onClick={handleMoreBtn}>Ещё</button>}
         </>
