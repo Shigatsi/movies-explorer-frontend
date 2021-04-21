@@ -94,7 +94,8 @@ export const addFilm =
     nameEN,
     nameRU,
     trailer,
-    year
+    year,
+    movieType
   }) => {
     return fetch(`${baseUrlLocal}/movies`, {
     method: 'POST',

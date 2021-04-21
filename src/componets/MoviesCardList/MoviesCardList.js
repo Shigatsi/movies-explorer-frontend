@@ -4,11 +4,7 @@ import './MoviesCardList.css';
 
 import MovieCard from '../MoviesCard/MovieCard';
 
-function MoviesCardList ({ movies, type, notFound, amountMovie, onAddMovie, onMovieDelete, findMovies, savedMovies}) {
-
-  console.log( findMovies, savedMovies)
-
-  const [isSaved, setIsSaved] = React.useState(false)
+function MoviesCardList ({ movies, type, notFound, amountMovie, onAddMovie, onMovieDelete, findFilms, savedMovies}) {
 
   return (
   <section className = "movie-cardlist">
@@ -29,7 +25,8 @@ function MoviesCardList ({ movies, type, notFound, amountMovie, onAddMovie, onMo
             trailer = {movie.trailer}
             onAddMovie={onAddMovie}
             onMovieDelete = {onMovieDelete}
-
+            findFilms = {findFilms}
+            savedMovies = {savedMovies}
           />
         ))
       ) : (
@@ -38,13 +35,15 @@ function MoviesCardList ({ movies, type, notFound, amountMovie, onAddMovie, onMo
           <MovieCard
             movie={movie}
             key = {movie.movieId}
-            type = {type}
+            // type = {type}
             cover = {movie.image}
             duration = {movie.duration}
             title = {movie.nameRU}
             trailer = {movie.trailer}
             onAddMovie={onAddMovie}
             onMovieDelete = {onMovieDelete}
+            findFilms = {findFilms}
+            savedMovies = {savedMovies}
           />
         ))
       )

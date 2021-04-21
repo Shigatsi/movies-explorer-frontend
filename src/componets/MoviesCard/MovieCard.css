@@ -13,7 +13,7 @@
   border-radius: 6px;
   object-fit: cover;
   height: 201px;
-  width:100%
+  width: 100%;
 }
 
 .movie-card__cover:hover {
@@ -22,65 +22,65 @@
 
 .movie-card__cover:hover + .movie-card__btn_type_save {
   cursor: pointer;
-  opacity:1;
-  transition: .2 ease-in-out;
+  opacity: 1;
+  transition: 0.2 ease-in-out;
 }
 
 .movie-card__btn_type_save:hover {
-  outline:none;
+  outline: none;
   cursor: pointer;
-  opacity:1;
+  opacity: 1;
   opacity: 70%;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
-.movie-card__btn{
-  position:absolute;
-  border:none;
-  top:14px;
+.movie-card__btn {
+  position: absolute;
+  border: none;
+  top: 14px;
   right: 14px;
-  opacity:0;
+  opacity: 0;
 }
 
 .movie-card__btn_type_added {
-  background-image: url('../../images/added__btn.svg');
+  background-image: url("../../images/added__btn.svg");
   background-position: center;
   width: 21px;
-  height:21px;
+  height: 21px;
   opacity: 1;
   padding: 0;
   border-radius: 50%;
 }
 
 .movie-card__btn_type_delete {
-  background-image: url('../../images/delete_btn.svg');
+  background-image: url("../../images/delete_btn.svg");
   background-position: center;
   width: 21px;
-  height:21px;
+  height: 21px;
   opacity: 0;
   padding: 0;
   border-radius: 50%;
-  outline:none;
+  outline: none;
 }
 
 .movie-card__cover:hover + .movie-card__btn_type_delete {
   cursor: pointer;
-  opacity:1;
-  transition: .2 ease-in-out;
+  opacity: 1;
+  transition: 0.2 ease-in-out;
 }
 
 .movie-card__btn_type_delete:hover {
   cursor: pointer;
   outline: none;
   opacity: 70%;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 .movie-card__btn_type_added:hover {
   cursor: pointer;
   outline: none;
   opacity: 70%;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 .movie-card__btn_type_save {
@@ -94,10 +94,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background-image: url("../../images/save_btn.png");
 }
-
-
 
 .movie-card__caption {
   display: flex;
@@ -109,21 +107,20 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
-  margin:0;
+  margin: 0;
 }
 
 .movie-card__duration {
   min-width: 52px;
-  margin:0;
+  margin: 0;
   font-size: 11px;
   line-height: 10px;
-  color: #A0A0A0;
+  color: #a0a0a0;
   background: #f9f9f9;
   border-radius: 3px;
   text-align: center;
   padding: 3px 0 3px;
 }
-
 
 @media screen and (max-width: 1024px) {
   .movie-card__cover {
@@ -131,10 +128,7 @@
   }
 }
 
-
-
 @media screen and (max-width: 425px) {
-
   .movie-card {
     display: grid;
     row-gap: 16px;
@@ -144,8 +138,8 @@
     min-height: 168px;
   }
 
-  .movie-card__btn{
-    top:10px;
+  .movie-card__btn {
+    top: 10px;
     right: 10px;
   }
   .movie-card__title {

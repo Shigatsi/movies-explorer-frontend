@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader'
 import useViewportWidth from '../../utils/useViewportWidth';
 
-function Movies ( { onSearch, movies, isSearch, notFound,  onAddMovie, onMovieDelete } ) {
+function Movies ( { onSearch, movies, isSearch, notFound,  onAddMovie, onMovieDelete, savedMovies, findFilms } ) {
 
   const {width} = useViewportWidth();
 
@@ -43,13 +43,17 @@ function Movies ( { onSearch, movies, isSearch, notFound,  onAddMovie, onMovieDe
         <>
           <MoviesCardList
           type = "movies"
-          movies = {movies} //.slice(0, moviesToShow+moreMovies)
+          // movies = {movies} //.slice(0, moviesToShow+moreMovies)
+          movies = {findFilms}
           notFound = {notFound}
           amountMovie = {moviesToShow+moreMovies}
           onAddMovie={onAddMovie}
           onMovieDelete={onMovieDelete}
+          findFilms = {findFilms}
+          savedMovies = {savedMovies}
           />
-         {(moviesToShow+moreMovies < movies.length)&& <button className = "movies__more" onClick={handleMoreBtn}>Ещё</button>}
+         {(moviesToShow+moreMovies < findFilms.length)&& <button className = "movies__more" onClick={handleMoreBtn}>Ещё</button>}
+         {/* movies.length */}
         </>
       )}
     </section>
