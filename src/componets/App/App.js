@@ -113,6 +113,7 @@ function App() {
   );
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [findFilms, setFindFilms] = React.useState([]);
+  const [savedFindFilms, setSavedFindFilms] = React.useState([]);
 
   const [isSearch, setIsSearch] = React.useState(false);
   const [notFound, setNotfound] = React.useState(false);
@@ -150,6 +151,14 @@ function App() {
       .finally(() => setIsSearch(false));
   }
 
+  function handleSaveFilmSearch(keyWord, isShort) {
+    debugger;
+    setIsSearch(true);
+
+    setSavedFindFilms(findSuitableFilms(keyWord, isShort, savedMovies));
+    setIsSearch(false);
+  }
+
   function handleGetSavedMovies() {
     getSavedMovies().then((res) => {
       setSavedMovies(res.data);
@@ -170,19 +179,15 @@ function App() {
   React.useEffect(() => {
     getSavedMovies();
     console.log(savedMovies);
-  }, [savedMovies]);
+  }, [savedMovies, findFilms, loggedIn]);
 
   function handleDeleteMovie(id) {
-    // const id = movie._id || movie.id; //|| movie.movieId
     deleteMovie(id)
       .then((res) => {
         setSavedMovies(
           savedMovies.filter((m) => {
             return m._id !== id;
           })
-          // savedMovies.filter((m) => {
-          //   return m.movieId !== id;
-          // })
         );
       })
       .catch((err) => console.error(err)); //выведем ошибку
@@ -221,8 +226,11 @@ function App() {
               path="/saved-movies"
               component={SavedMovies}
               savedMovies={savedMovies}
+              isSearch={isSearch}
+              onSearch={handleSaveFilmSearch}
               onMovieDelete={handleDeleteMovie}
               findFilms={findFilms}
+              savedFindFilms={savedFindFilms}
               savedMovies={savedMovies}
             />
             <Footer />
