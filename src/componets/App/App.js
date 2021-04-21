@@ -102,6 +102,7 @@ function App() {
   function handleProfileEdit(currentUser) {
     editUserData(currentUser)
       .then((userData) => {
+        console.log("handleUserData", userData);
         setCurrentUser(userData.data);
       })
       .catch((err) => console.error(err)); //выведем ошибку;
@@ -168,16 +169,10 @@ function App() {
       return addFilm(movie)
         .then((res) => {
           setSavedMovies((movies) => [...movies, res.data]);
-          console.log(savedMovies);
         })
         .catch((err) => console.error(err)); //выведем ошибку
     }
   }
-
-  // React.useEffect(() => {
-  //   handleMovieAdd();
-  //   console.log("ReactuseEffect getSavedMovies", savedMovies);
-  // }, [savedMovies]); //savedMovies, findFilms, loggedIn
 
   function handleDeleteMovie(id) {
     deleteMovie(id)
