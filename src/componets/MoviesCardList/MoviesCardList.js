@@ -13,10 +13,7 @@ function MoviesCardList({
   onMovieDelete,
   findFilms,
   savedMovies,
-  savedFindFilms,
 }) {
-  console.log("MoviesCardList + savedFindFilms", savedFindFilms);
-
   return (
     <section className="movie-cardlist">
       {movies.length === 0 && notFound && (

@@ -14,10 +14,6 @@ function SavedMovies({
   savedFindFilms,
   test,
 }) {
-  console.log(test);
-  console.log("SavedMovies", savedMovies.length);
-  console.log("SavedMovies + savedFindFilms", savedFindFilms);
-
   return (
     <section className="movies">
       <SearchForm onSearch={onSearch} />

@@ -16,15 +16,12 @@ function MovieCard({
   findFilms,
   savedMovies,
 }) {
-  console.log("findFilms", findFilms, "savedMovies", savedMovies);
-
   const [id, setId] = React.useState(movie._id || "");
 
   const compareMovie = (movie, savedMovies) => {
     let id = "";
     savedMovies.forEach((item) => {
       if (item.movieId === movie.movieId) {
-        console.log("compareMovie", id);
         id = item._id;
       }
     });

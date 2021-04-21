@@ -152,9 +152,7 @@ function App() {
   }
 
   function handleSaveFilmSearch(keyWord, isShort) {
-    debugger;
     setIsSearch(true);
-
     setSavedFindFilms(findSuitableFilms(keyWord, isShort, savedMovies));
     setIsSearch(false);
   }
@@ -169,17 +167,17 @@ function App() {
     if (savedMovies.every((m) => m.movieId != movie.movieId)) {
       return addFilm(movie)
         .then((res) => {
-          setSavedMovies((movies) => [...movies, res]);
+          setSavedMovies((movies) => [...movies, res.data]);
           console.log(savedMovies);
         })
         .catch((err) => console.error(err)); //выведем ошибку
     }
   }
 
-  React.useEffect(() => {
-    getSavedMovies();
-    console.log(savedMovies);
-  }, [savedMovies, findFilms, loggedIn]);
+  // React.useEffect(() => {
+  //   handleMovieAdd();
+  //   console.log("ReactuseEffect getSavedMovies", savedMovies);
+  // }, [savedMovies]); //savedMovies, findFilms, loggedIn
 
   function handleDeleteMovie(id) {
     deleteMovie(id)
