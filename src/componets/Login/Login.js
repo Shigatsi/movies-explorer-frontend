@@ -36,8 +36,6 @@ function Login({ onLogin }) {
     return;
   }
 
-  console.log(values, errors, data, "psina ne rabotaert");
-
   return (
     <section className="login">
       <form onSubmit={handleSubmit} className="login__form">

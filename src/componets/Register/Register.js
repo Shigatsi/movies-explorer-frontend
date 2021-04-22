@@ -34,7 +34,6 @@ function Register({ onRegister }) {
     e.preventDefault();
     if (data) {
       onRegister(values ? values : data);
-      console.log(data);
     }
     return;
   }
