@@ -22,7 +22,7 @@
 
 .movie-card__cover:hover + .movie-card__btn_type_save {
   cursor: pointer;
-  opacity: 1;
+  opacity: 100%;
   transition: 0.2 ease-in-out;
 }
 
@@ -47,7 +47,7 @@
   background-position: center;
   width: 21px;
   height: 21px;
-  opacity: 1;
+  opacity: 100%;
   padding: 0;
   border-radius: 50%;
 }
