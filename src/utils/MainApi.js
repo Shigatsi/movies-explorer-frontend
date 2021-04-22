@@ -1,5 +1,4 @@
-// import { BASE_MAIN_URL } from '../utils/Constants';
-const baseUrlLocal = "http://localhost:3001";
+import { BASE_MAIN_URL } from "../utils/Constants";
 
 //проверки ответа сервера и преобразование из json
 const checkRes = (res) =>
@@ -8,7 +7,7 @@ const checkRes = (res) =>
 //auth
 
 export const register = (name, email, password) => {
-  return fetch(`${baseUrlLocal}/signup`, {
+  return fetch(`${BASE_MAIN_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +17,7 @@ export const register = (name, email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(`${baseUrlLocal}/signin`, {
+  return fetch(`${BASE_MAIN_URL}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +28,7 @@ export const authorize = (email, password) => {
 
 //получаем токен
 export const getToken = (token) => {
-  return fetch(`${baseUrlLocal}/users/me`, {
+  return fetch(`${BASE_MAIN_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -40,7 +39,7 @@ export const getToken = (token) => {
 
 //получаем информацию о пользователе
 export const getUserData = () => {
-  return fetch(`${baseUrlLocal}/users/me`, {
+  return fetch(`${BASE_MAIN_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +50,7 @@ export const getUserData = () => {
 
 //редактируем данные пользователя
 export const editUserData = (currentUser) => {
-  return fetch(`${baseUrlLocal}/users/me`, {
+  return fetch(`${BASE_MAIN_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -66,7 +65,7 @@ export const editUserData = (currentUser) => {
 
 //получить сохранённые фильмы
 export const getSavedMovies = () => {
-  return fetch(`${baseUrlLocal}/movies`, {
+  return fetch(`${BASE_MAIN_URL}/movies`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -89,7 +88,7 @@ export const addFilm = ({
   trailer,
   year,
 }) => {
-  return fetch(`${baseUrlLocal}/movies`, {
+  return fetch(`${BASE_MAIN_URL}/movies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -113,7 +112,7 @@ export const addFilm = ({
 
 //удолить фильм
 export const deleteMovie = (id) => {
-  return fetch(`${baseUrlLocal}/movies/${id}`, {
+  return fetch(`${BASE_MAIN_URL}/movies/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
