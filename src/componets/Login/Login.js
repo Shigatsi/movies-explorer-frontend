@@ -1,44 +1,51 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import './Login.css';
+import "./Login.css";
 
-import FormHeader from '../FormHeader/FormHeader';
+import FormHeader from "../FormHeader/FormHeader";
+import useFormWithValidation from "../Validation/Validation";
 
-function Login ({ onLogin, ...props}) {
-
+function Login({ onLogin }) {
   const [data, setData] = React.useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    setData({
-      ...data,
-      [name] : value
-    })
-  }
+  React.useEffect(() => {
+    setData(data);
+  }, [data]);
+
+  const {
+    values = {
+      email: data.email,
+      password: data.password,
+    },
+    handleChange,
+    errors,
+    isValid,
+    resetForm,
+  } = useFormWithValidation();
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
-    if(data) {
-      onLogin(data);
+    if (data) {
+      onLogin(values ? values : data);
     }
-    return
+    return;
   }
+
+  console.log(values, errors, data, "psina ne rabotaert");
 
   return (
     <section className="login">
-      <form onSubmit = {handleSubmit} className = "login__form">
-        <FormHeader
-          subtitle = 'Рады видеть!'
-        />
+      <form onSubmit={handleSubmit} className="login__form">
+        <FormHeader subtitle="Рады видеть!" />
 
         <ul className="form__items form__items_type_login">
-        <li className= "form__item">
-          <label className="form__label">E-mail</label>
+          <li className="form__item">
+            <label className="form__label">E-mail</label>
             <input
               type="email"
               id="form_email"
@@ -47,10 +54,10 @@ function Login ({ onLogin, ...props}) {
               maxLength="40"
               required
               className="form__input"
-              value={data.email}
+              value={values.email}
               onChange={handleChange}
             />
-          <label className="form__label">Password</label>
+            <label className="form__label">Password</label>
             <input
               type="password"
               id="form_password"
@@ -59,22 +66,36 @@ function Login ({ onLogin, ...props}) {
               maxLength="40"
               required
               className="form__input"
-              value={data.password}
+              value={values.password}
               onChange={handleChange}
             />
-            <span className = "form__input-error form__input-error_hidden">Что-то пошло не так...</span>
+            <span
+              className={
+                errors ? "form__input-error " : "form__input-error_hidden"
+              }
+            >
+              {errors.email || errors.password}
+            </span>
           </li>
         </ul>
-        <button className="form__submit-btn form__submit-btn_type_login" >Войти</button>
+        <button
+          className={`form__submit-btn form__submit-btn_type_login ${
+            errors.email || errors.password
+              ? "form__submit-btn_type_disabled"
+              : ""
+          }`}
+        >
+          Войти
+        </button>
         <p className="form__text">
           Ещё не зарегистрированы?
-          <Link className="form__link" to = "/sign-up">&nbsp;Регистрация</Link>
+          <Link className="form__link" to="/sign-up">
+            &nbsp;Регистрация
+          </Link>
         </p>
-
       </form>
     </section>
-
-  )
+  );
 }
 
 export default Login;

@@ -6,8 +6,7 @@ import "./Register.css";
 import useFormWithValidation from "../Validation/Validation";
 import FormHeader from "../FormHeader/FormHeader";
 
-function Register({ onRegister, ...props }) {
-  // const [isEdit, setIsEdit] = React.useState(false);
+function Register({ onRegister }) {
   const [data, setUserData] = React.useState({
     name: "",
     email: "",
@@ -18,13 +17,6 @@ function Register({ onRegister, ...props }) {
     setUserData(data);
   }, [data]);
 
-  // function handleChange(e) {
-  //   const { name, value } = e.target;
-  //   setUserData({
-  //     ...data,
-  //     [name]: value,
-  //   });
-  // }
   const {
     values = {
       name: data.name,
@@ -37,10 +29,6 @@ function Register({ onRegister, ...props }) {
     resetForm,
   } = useFormWithValidation();
 
-  // const toggleEditState = () => {
-  //   errors && setIsEdit(!isEdit);
-  // };
-
   function hadleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
@@ -51,7 +39,6 @@ function Register({ onRegister, ...props }) {
     return;
   }
 
-  console.log(values, errors);
   return (
     <section className="register">
       <form onSubmit={hadleSubmit} className="register__form">
