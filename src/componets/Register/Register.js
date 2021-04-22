@@ -53,7 +53,9 @@ function Register({ onRegister }) {
               maxLength="40"
               pattern="[а-яёА-ЯЁA-Za-z \-]*"
               required
-              className="form__input"
+              className={`form__input ${
+                errors.name ? "form__input_type_error" : ""
+              } `}
               value={values.name}
               onChange={handleChange}
             />
@@ -67,7 +69,9 @@ function Register({ onRegister }) {
               minLength="3"
               maxLength="40"
               required
-              className="form__input"
+              className={`form__input ${
+                errors.email ? "form__input_type_error" : ""
+              } `}
               value={values.email}
               onChange={handleChange}
             />
@@ -81,7 +85,9 @@ function Register({ onRegister }) {
               minLength="8"
               maxLength="40"
               required
-              className="form__input"
+              className={`form__input ${
+                errors.password ? "form__input_type_error" : ""
+              } `}
               value={values.password}
               onChange={handleChange}
             />

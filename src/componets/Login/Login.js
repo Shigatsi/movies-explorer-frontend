@@ -51,7 +51,9 @@ function Login({ onLogin }) {
               minLength="3"
               maxLength="40"
               required
-              className="form__input"
+              className={`form__input ${
+                errors.email ? "form__input_type_error" : ""
+              } `}
               value={values.email}
               onChange={handleChange}
             />
@@ -63,7 +65,9 @@ function Login({ onLogin }) {
               minLength="8"
               maxLength="40"
               required
-              className="form__input"
+              className={`form__input ${
+                errors.password ? "form__input_type_error" : ""
+              } `}
               value={values.password}
               onChange={handleChange}
             />

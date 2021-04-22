@@ -60,7 +60,9 @@ function Profile({ onEditProfile, logOut }) {
               pattern="[а-яёА-ЯЁA-Za-z \-]*"
               required
               readOnly={!isEdit}
-              className="profile__form-input"
+              className={`profile__form-input ${
+                errors.name ? "form__input_type_error" : ""
+              } `}
               value={values.name}
               onChange={handleChange}
             />
@@ -76,7 +78,9 @@ function Profile({ onEditProfile, logOut }) {
               required
               pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
               readOnly={!isEdit}
-              className="profile__form-input"
+              className={`profile__form-input ${
+                errors.email ? "form__input_type_error" : ""
+              } `}
               value={values.email}
               onChange={handleChange}
             />

@@ -53,6 +53,10 @@
   text-align: end;
 }
 
+.form-input_type_error {
+  color: #ff4062;
+}
+
 .profile__form-input:focus {
   outline: none;
 }
