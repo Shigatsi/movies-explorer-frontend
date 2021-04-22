@@ -89,6 +89,12 @@ function App() {
     }
   }
 
+  const hadleLogout = () => {
+    setLoggedIn(false);
+    localStorage.removeItem("token");
+    history.push("/sign-in");
+  };
+
   const [currentUser, setCurrentUser] = React.useState({});
 
   function handleUserData() {
@@ -232,6 +238,7 @@ function App() {
             <Header loggedIn={loggedIn} />
             <ProtectedRoute
               loggedIn={loggedIn}
+              logOut={hadleLogout}
               path="/profile"
               component={Profile}
               onEditProfile={handleProfileEdit}

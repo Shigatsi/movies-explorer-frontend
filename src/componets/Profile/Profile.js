@@ -1,11 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useFormWithValidation from "../Validation/Validation";
 import "./Profile.css";
 
-function Profile({ onEditProfile }) {
+function Profile({ onEditProfile, logOut }) {
   const [isEdit, setIsEdit] = React.useState(false);
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -43,13 +42,6 @@ function Profile({ onEditProfile }) {
       email: values.email ? values.email : email,
     });
     toggleEditState();
-  }
-
-  //выход из приложения
-  const history = useHistory();
-  function handleLogOut() {
-    localStorage.removeItem("token");
-    history.push("/sign-in");
   }
 
   return (
@@ -117,7 +109,7 @@ function Profile({ onEditProfile }) {
             Редактировать
           </button>
           <button
-            onClick={handleLogOut}
+            onClick={logOut}
             id="profile_logout-btn"
             className=" profile__btn profile__logout-btn"
           >
