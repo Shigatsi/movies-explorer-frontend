@@ -29,7 +29,7 @@
 .movie-card__btn_type_save:hover {
   outline: none;
   cursor: pointer;
-  opacity: 1;
+  opacity: 100%;
   opacity: 70%;
   transition: 0.2s ease-in-out;
 }
@@ -65,7 +65,7 @@
 
 .movie-card__cover:hover + .movie-card__btn_type_delete {
   cursor: pointer;
-  opacity: 1;
+  opacity: 100%;
   transition: 0.2 ease-in-out;
 }
 
