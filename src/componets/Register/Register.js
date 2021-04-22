@@ -3,33 +3,55 @@ import { Link } from "react-router-dom";
 
 import "./Register.css";
 
+import useFormWithValidation from "../Validation/Validation";
 import FormHeader from "../FormHeader/FormHeader";
 
 function Register({ onRegister, ...props }) {
+  // const [isEdit, setIsEdit] = React.useState(false);
   const [data, setUserData] = React.useState({
     name: "",
     email: "",
     password: "",
   });
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setUserData({
-      ...data,
-      [name]: value,
-    });
-  }
+  React.useEffect(() => {
+    setUserData(data);
+  }, [data]);
+
+  // function handleChange(e) {
+  //   const { name, value } = e.target;
+  //   setUserData({
+  //     ...data,
+  //     [name]: value,
+  //   });
+  // }
+  const {
+    values = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    },
+    handleChange,
+    errors,
+    isValid,
+    resetForm,
+  } = useFormWithValidation();
+
+  // const toggleEditState = () => {
+  //   errors && setIsEdit(!isEdit);
+  // };
 
   function hadleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
     if (data) {
-      onRegister(data);
+      onRegister(values ? values : data);
       console.log(data);
     }
     return;
   }
 
+  console.log(values, errors);
   return (
     <section className="register">
       <form onSubmit={hadleSubmit} className="register__form">
@@ -46,7 +68,7 @@ function Register({ onRegister, ...props }) {
               pattern="[а-яёА-ЯЁA-Za-z \-]*"
               required
               className="form__input"
-              value={data.name}
+              value={values.name}
               onChange={handleChange}
             />
           </li>
@@ -60,7 +82,7 @@ function Register({ onRegister, ...props }) {
               maxLength="40"
               required
               className="form__input"
-              value={data.email}
+              value={values.email}
               onChange={handleChange}
             />
           </li>
@@ -74,15 +96,25 @@ function Register({ onRegister, ...props }) {
               maxLength="40"
               required
               className="form__input"
-              value={data.password}
+              value={values.password}
               onChange={handleChange}
             />
-            <span className="form__input-error form__input-error_hidden">
-              Что-то пошло не так...
+            <span
+              className={
+                errors ? "form__input-error " : "form__input-error_hidden"
+              }
+            >
+              {errors.name || errors.email || errors.password}
             </span>
           </li>
         </ul>
-        <button className="form__submit-btn form__submit-btn_type_register">
+        <button
+          className={`form__submit-btn form__submit-btn_type_register ${
+            errors.name || errors.email || errors.password
+              ? "form__submit-btn_type_disabled"
+              : ""
+          }`}
+        >
           Зарегистрироваться
         </button>
         <p className="form__text">
