@@ -1,36 +1,41 @@
 const shortFilmDuration = 50;
 
-function searchFilm (keyWord, isShort, movie) {
-  const { duration, country, description, director,  nameEN, nameRU, year } = movie;
-  keyWord.toLowerCase();
-  if(isShort) {
-    if (duration > shortFilmDuration)
-    return false;
+function searchFilm(keyWord, isShort, movie) {
+  const {
+    duration,
+    country,
+    description,
+    director,
+    nameEN,
+    nameRU,
+    year,
+  } = movie;
+  keyWord = keyWord.toLowerCase();
+  if (isShort) {
+    if (duration > shortFilmDuration) return false;
   }
-  if(country&&country.toLowerCase().includes(keyWord)){
+  if (country && country.toLowerCase().includes(keyWord)) {
     return true;
   }
-  if(description&&description.toLowerCase().includes(keyWord)){
+  if (description && description.toLowerCase().includes(keyWord)) {
     return true;
   }
-  if(director&&director.toLowerCase().includes(keyWord)){
+  if (director && director.toLowerCase().includes(keyWord)) {
     return true;
   }
-  if(nameEN&&nameEN.toLowerCase().includes(keyWord)){
+  if (nameEN && nameEN.toLowerCase().includes(keyWord)) {
     return true;
   }
-  if(nameRU&&nameRU.toLowerCase().includes(keyWord)){
+  if (nameRU && nameRU.toLowerCase().includes(keyWord)) {
     return true;
   }
-  if(year&&year.toLowerCase().includes(keyWord)){
+  if (year && year.toLowerCase().includes(keyWord)) {
     return true;
   }
-  return false
+  return false;
 }
 
-function findSuitableFilms (keyWord, isShort, movies) {
-  return  movies.filter((movie)=>
-  searchFilm(keyWord, isShort, movie)
- )
+function findSuitableFilms(keyWord, isShort, movies) {
+  return movies.filter((movie) => searchFilm(keyWord, isShort, movie));
 }
 export default findSuitableFilms;
