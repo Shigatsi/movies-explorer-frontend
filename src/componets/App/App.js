@@ -65,7 +65,7 @@ function App() {
         localStorage.setItem("token", res.token);
         setLoggedIn(true);
         history.push("/movies");
-        window.location.reload(); //обновляю страницу, чтобы новый юзер отобразился
+        // window.location.reload(); //обновляю страницу, чтобы новый юзер отобразился
       })
       .catch((err) => console.error(err)) //выведем ошибку;
       .finally(() => {
@@ -188,13 +188,13 @@ function App() {
 
   return (
     <div className="page">
-      <Switch>
-        <Route exact path="/">
-          <Header loggedIn={loggedIn} />
-          <Main />
-          <Footer />
-        </Route>
-        <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={currentUser}>
+        <Switch>
+          <Route exact path="/">
+            <Header loggedIn={loggedIn} />
+            <Main />
+            <Footer />
+          </Route>
           <Route path="/movies">
             <Header loggedIn={loggedIn} />
             <ProtectedRoute
@@ -243,11 +243,11 @@ function App() {
           <Route path="/sign-in">
             <Login onLogin={handleLogin} />
           </Route>
-        </CurrentUserContext.Provider>
-        <Route path="*">
-          <PageNotFound />
-        </Route>
-      </Switch>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
+        </Switch>
+      </CurrentUserContext.Provider>
     </div>
   );
 }
