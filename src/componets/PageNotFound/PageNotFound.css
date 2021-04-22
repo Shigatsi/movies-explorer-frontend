@@ -1,4 +1,4 @@
-.not-found{
+.not-found {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -16,11 +16,11 @@
 .not-found__subtitle {
   font-size: 16px;
   line-height: 19px;
-  margin-top:0;
+  margin-top: 0;
   margin-bottom: 184px;
 }
 
-.not-found__link{
+.not-found__link {
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
@@ -29,16 +29,15 @@
 }
 
 .not-found__link:hover {
-  opacity: 70%;
-  transition: .2s ease-in-out;
-
+  opacity: 0.7;
+  transition: 0.2s ease-in-out;
 }
 
 @media screen and (max-width: 768px) {
   .not-found__title {
     margin-top: 408px;
   }
-  .not-found__link{
+  .not-found__link {
     margin-bottom: 222px;
   }
 }
@@ -56,7 +55,7 @@
     line-height: 15px;
     margin-bottom: 284px;
   }
-  .not-found__link{
+  .not-found__link {
     margin-bottom: 30px;
   }
 }

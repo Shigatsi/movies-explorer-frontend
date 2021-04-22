@@ -22,15 +22,14 @@
 
 .movie-card__cover:hover + .movie-card__btn_type_save {
   cursor: pointer;
-  opacity: 100%;
+  opacity: 1;
   transition: 0.2 ease-in-out;
 }
 
 .movie-card__btn_type_save:hover {
   outline: none;
   cursor: pointer;
-  opacity: 100%;
-  opacity: 70%;
+  opacity: 1;
   transition: 0.2s ease-in-out;
 }
 
@@ -47,7 +46,7 @@
   background-position: center;
   width: 21px;
   height: 21px;
-  opacity: 100%;
+  opacity: 0.7;
   padding: 0;
   border-radius: 50%;
 }
@@ -65,21 +64,21 @@
 
 .movie-card__cover:hover + .movie-card__btn_type_delete {
   cursor: pointer;
-  opacity: 100%;
+  opacity: 0.7;
   transition: 0.2 ease-in-out;
 }
 
 .movie-card__btn_type_delete:hover {
   cursor: pointer;
   outline: none;
-  opacity: 70%;
+  opacity: 0.7;
   transition: 0.2s ease-in-out;
 }
 
 .movie-card__btn_type_added:hover {
   cursor: pointer;
   outline: none;
-  opacity: 70%;
+  opacity: 0.7;
   transition: 0.2s ease-in-out;
 }
 
