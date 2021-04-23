@@ -92,7 +92,9 @@ function App() {
 
   const hadleLogout = () => {
     setLoggedIn(false);
+    console.log("delete movie from local storage update");
     localStorage.removeItem("token");
+    localStorage.removeItem("movies");
     history.push("/sign-in");
   };
 
@@ -168,15 +170,24 @@ function App() {
 
   function handleFilmSearch(keyWord, isShort) {
     setIsSearch(true);
-    getMovies()
-      .then((res) => {
-        setMovies(movieConverter(res));
-        localStorage.setItem("movies", JSON.stringify(movies));
-        setFindFilms(findSuitableFilms(keyWord, isShort, movies));
-        findFilms.length === 0 && setNotfound(true);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => setIsSearch(false));
+    if (movies) {
+      setFindFilms(findSuitableFilms(keyWord, isShort, movies));
+      findFilms.length === 0 && setNotfound(true);
+    } else {
+      getMovies()
+        .then((res) => {
+          console.log(res);
+          debugger;
+          // setMovies(movieConverter(res));
+          localStorage.setItem("movies", JSON.stringify(movies));
+          setMovies(movieConverter(res));
+          setFindFilms(findSuitableFilms(keyWord, isShort, movies));
+          findFilms.length === 0 && setNotfound(true);
+        })
+        .catch((err) => console.error(err))
+        .finally(() => setIsSearch(false));
+    }
+    setIsSearch(false);
   }
 
   function handleSaveFilmSearch(keyWord, isShort) {
