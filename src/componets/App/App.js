@@ -170,7 +170,7 @@ function App() {
 
   function handleFilmSearch(keyWord, isShort) {
     setIsSearch(true);
-    if (movies) {
+    if (movies === []) {
       setFindFilms(findSuitableFilms(keyWord, isShort, movies));
       findFilms.length === 0 && setNotfound(true);
     } else {
