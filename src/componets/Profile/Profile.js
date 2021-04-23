@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useFormWithValidation from "../Validation/Validation";
 import "./Profile.css";
 
-function Profile({ onEditProfile, logOut }) {
+function Profile({ onEditProfile, logOut, isDataUpdate }) {
   const [isEdit, setIsEdit] = React.useState(false);
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -27,8 +27,6 @@ function Profile({ onEditProfile, logOut }) {
     isValid,
     resetForm,
   } = useFormWithValidation();
-
-  console.log(values, errors);
 
   const toggleEditState = () => {
     setIsEdit(!isEdit);
@@ -59,7 +57,7 @@ function Profile({ onEditProfile, logOut }) {
               maxLength="40"
               pattern="[а-яёА-ЯЁA-Za-z \-]*"
               required
-              readOnly={!isEdit}
+              readOnly={!isEdit || isDataUpdate}
               className={`profile__form-input ${
                 errors.name ? "form__input_type_error" : ""
               } `}
@@ -77,7 +75,7 @@ function Profile({ onEditProfile, logOut }) {
               maxLength="40"
               required
               pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-              readOnly={!isEdit}
+              readOnly={!isEdit || isDataUpdate}
               className={`profile__form-input ${
                 errors.email ? "form__input_type_error" : ""
               } `}

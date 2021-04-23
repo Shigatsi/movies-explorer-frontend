@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 import "./MovieCard.css";
 import convertDuration from "../../utils/DurationConverter";
-import SavedMovies from "../SavedMovies/SavedMovies";
 
 function MovieCard({
   cover,

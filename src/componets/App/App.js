@@ -12,6 +12,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
+import InfoTooltip from "../InfoToolTip/InfoToolTip";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -35,6 +36,7 @@ function App() {
   //auth
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [succes, isSucces] = React.useState(false);
+  const [isDataUpdate, setDataUpdate] = React.useState(false);
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -50,11 +52,11 @@ function App() {
     const { name, email, password } = data;
     register(name, email, password)
       .then(() => {
-        isSucces(true);
+        // isSucces(true);
         history.push("/sign-in");
       })
       .catch(() => {
-        isSucces(false);
+        // isSucces(false);
       });
   }
 
@@ -65,7 +67,6 @@ function App() {
         localStorage.setItem("token", res.token);
         setLoggedIn(true);
         history.push("/movies");
-        // window.location.reload(); //обновляю страницу, чтобы новый юзер отобразился
       })
       .catch((err) => console.error(err)) //выведем ошибку;
       .finally(() => {
@@ -101,17 +102,37 @@ function App() {
     getUserData()
       .then((userData) => {
         setCurrentUser(userData.data);
+        // isSucces(true);
       })
-      .catch((err) => console.error(err)); //выведем ошибку
+      .catch((err) => {
+        // isSucces(false);
+        console.error(err);
+      }); //выведем ошибку
   }
+
+  //уведомление об ошибке/успехе при обновлении профиля
+  const [succesEditProfile, isSuccesEditProfile] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
+
+  const closePopup = () => {
+    setIsInfoTooltipOpen(false);
+  };
 
   function handleProfileEdit(currentUser) {
     editUserData(currentUser)
       .then((userData) => {
-        console.log("handleUserData", userData);
+        setDataUpdate(true);
         setCurrentUser(userData.data);
+        isSuccesEditProfile(true);
+        setIsInfoTooltipOpen(true);
+        console.log("handleUserData", userData);
       })
-      .catch((err) => console.error(err)); //выведем ошибку;
+      .catch((err) => {
+        isSuccesEditProfile(false);
+        setIsInfoTooltipOpen(true);
+        console.error(err); //выведем ошибку;
+      })
+      .finally(() => setDataUpdate(false));
   }
 
   //movies
@@ -242,6 +263,7 @@ function App() {
               path="/profile"
               component={Profile}
               onEditProfile={handleProfileEdit}
+              isDataUpdate={isDataUpdate}
             />
           </Route>
           <Route path="/sign-up">
@@ -254,6 +276,11 @@ function App() {
             <PageNotFound />
           </Route>
         </Switch>
+        <InfoTooltip
+          isOpen={isInfoTooltipOpen}
+          onClose={closePopup}
+          isSuccess={succesEditProfile}
+        />
       </CurrentUserContext.Provider>
     </div>
   );
