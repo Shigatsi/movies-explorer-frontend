@@ -6,7 +6,7 @@ import "./Login.css";
 import FormHeader from "../FormHeader/FormHeader";
 import useFormWithValidation from "../Validation/Validation";
 
-function Login({ onLogin }) {
+function Login({ onLogin, isDataUpdate, serverErr }) {
   const [data, setData] = React.useState({
     email: "",
     password: "",
@@ -36,6 +36,14 @@ function Login({ onLogin }) {
     return;
   }
 
+  const [serverErrMsg, setServerErrMsg] = React.useState("");
+
+  React.useEffect(() => {
+    if (serverErr.includes(401)) {
+      setServerErrMsg("Вы ввели неправильный логин или пароль. ");
+    }
+  }, [serverErr]);
+
   return (
     <section className="login">
       <form onSubmit={handleSubmit} className="login__form">
@@ -51,6 +59,7 @@ function Login({ onLogin }) {
               minLength="3"
               maxLength="40"
               required
+              readOnly={isDataUpdate}
               className={`form__input ${
                 errors.email ? "form__input_type_error" : ""
               } `}
@@ -65,6 +74,7 @@ function Login({ onLogin }) {
               minLength="8"
               maxLength="40"
               required
+              readOnly={isDataUpdate}
               className={`form__input ${
                 errors.password ? "form__input_type_error" : ""
               } `}
@@ -73,10 +83,12 @@ function Login({ onLogin }) {
             />
             <span
               className={
-                errors ? "form__input-error " : "form__input-error_hidden"
+                errors || serverErr
+                  ? "form__input-error "
+                  : "form__input-error_hidden"
               }
             >
-              {errors.email || errors.password}
+              {errors.email || errors.password || serverErrMsg}
             </span>
           </li>
         </ul>

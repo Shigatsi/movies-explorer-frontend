@@ -6,7 +6,7 @@ import "./Register.css";
 import useFormWithValidation from "../Validation/Validation";
 import FormHeader from "../FormHeader/FormHeader";
 
-function Register({ onRegister }) {
+function Register({ onRegister, isDataUpdate, serverErr }) {
   const [data, setUserData] = React.useState({
     name: "",
     email: "",
@@ -37,6 +37,15 @@ function Register({ onRegister }) {
     }
     return;
   }
+  const [serverErrMsg, setServerErrMsg] = React.useState("");
+
+  React.useEffect(() => {
+    if (serverErr.includes(409)) {
+      setServerErrMsg("Пользователь с таким email уже существует.");
+    } else if (serverErr.includes(500)) {
+      setServerErrMsg("При регистрации пользователя произошла ошибка.");
+    }
+  }, [serverErr]);
 
   return (
     <section className="register">
@@ -53,6 +62,7 @@ function Register({ onRegister }) {
               maxLength="40"
               pattern="[а-яёА-ЯЁA-Za-z \-]*"
               required
+              readOnly={isDataUpdate}
               className={`form__input ${
                 errors.name ? "form__input_type_error" : ""
               } `}
@@ -69,6 +79,7 @@ function Register({ onRegister }) {
               minLength="3"
               maxLength="40"
               required
+              readOnly={isDataUpdate}
               className={`form__input ${
                 errors.email ? "form__input_type_error" : ""
               } `}
@@ -85,6 +96,7 @@ function Register({ onRegister }) {
               minLength="8"
               maxLength="40"
               required
+              readOnly={isDataUpdate}
               className={`form__input ${
                 errors.password ? "form__input_type_error" : ""
               } `}
@@ -93,10 +105,12 @@ function Register({ onRegister }) {
             />
             <span
               className={
-                errors ? "form__input-error " : "form__input-error_hidden"
+                errors || serverErr
+                  ? "form__input-error "
+                  : "form__input-error_hidden"
               }
             >
-              {errors.name || errors.email || errors.password}
+              {errors.name || errors.email || errors.password || serverErrMsg}
             </span>
           </li>
         </ul>

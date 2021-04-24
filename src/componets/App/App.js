@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 
 import "./App.css";
@@ -37,6 +37,7 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [succes, isSucces] = React.useState(false);
   const [isDataUpdate, setDataUpdate] = React.useState(false);
+  const [serverErr, setServerErr] = React.useState("");
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -50,28 +51,39 @@ function App() {
 
   function handleRegister(data) {
     const { name, email, password } = data;
+    setDataUpdate(true);
     register(name, email, password)
       .then(() => {
         // isSucces(true);
+
         history.push("/sign-in");
       })
-      .catch(() => {
+      .catch((err) => {
         // isSucces(false);
-      });
+        console.error(err); //выведем ошибку;
+        setServerErr(err.slice(8));
+      })
+      .finally(() => setDataUpdate(false));
   }
 
   function handleLogin(data) {
     const { email, password } = data;
+    setDataUpdate(true);
     authorize(email, password)
       .then((res) => {
         localStorage.setItem("token", res.token);
         setLoggedIn(true);
+        window.location.reload(); //обновляю страницу, чтобы новый юзер отобразился
         history.push("/movies");
       })
-      .catch((err) => console.error(err)) //выведем ошибку;
+      .catch((err) => {
+        setServerErr(err.slice(8));
+        console.error(err);
+      }) //выведем ошибку;
       .finally(() => {
         handleUserData();
         handleGetSavedMovies();
+        setDataUpdate(false);
       });
   }
 
@@ -93,8 +105,7 @@ function App() {
   const hadleLogout = () => {
     setLoggedIn(false);
     console.log("delete movie from local storage update");
-    localStorage.removeItem("token");
-    localStorage.removeItem("movies");
+    localStorage.clear();
     history.push("/sign-in");
   };
 
@@ -139,7 +150,7 @@ function App() {
 
   //movies
   const [movies, setMovies] = React.useState(
-    JSON.parse(localStorage.getItem("movies")) || []
+    [] || JSON.parse(localStorage.getItem("movies"))
   );
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [findFilms, setFindFilms] = React.useState([]);
@@ -170,15 +181,14 @@ function App() {
 
   function handleFilmSearch(keyWord, isShort) {
     setIsSearch(true);
-    if (movies === []) {
+    debugger;
+    if (movies.length !== 0) {
       setFindFilms(findSuitableFilms(keyWord, isShort, movies));
       findFilms.length === 0 && setNotfound(true);
+      setIsSearch(false);
     } else {
       getMovies()
         .then((res) => {
-          console.log(res);
-          debugger;
-          // setMovies(movieConverter(res));
           localStorage.setItem("movies", JSON.stringify(movies));
           setMovies(movieConverter(res));
           setFindFilms(findSuitableFilms(keyWord, isShort, movies));
@@ -187,13 +197,11 @@ function App() {
         .catch((err) => console.error(err))
         .finally(() => setIsSearch(false));
     }
-    setIsSearch(false);
+    return findFilms;
   }
 
   function handleSaveFilmSearch(keyWord, isShort) {
-    setIsSearch(true);
     setSavedFindFilms(findSuitableFilms(keyWord, isShort, savedMovies));
-    setIsSearch(false);
   }
 
   function handleGetSavedMovies() {
@@ -278,10 +286,18 @@ function App() {
             />
           </Route>
           <Route path="/sign-up">
-            <Register onRegister={handleRegister} />
+            <Register
+              onRegister={handleRegister}
+              isDataUpdate={isDataUpdate}
+              serverErr={serverErr}
+            />
           </Route>
           <Route path="/sign-in">
-            <Login onLogin={handleLogin} />
+            <Login
+              onLogin={handleLogin}
+              isDataUpdate={isDataUpdate}
+              serverErr={serverErr}
+            />
           </Route>
           <Route path="*">
             <PageNotFound />

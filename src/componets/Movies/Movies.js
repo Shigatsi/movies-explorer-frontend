@@ -18,27 +18,40 @@ function Movies({
 }) {
   const { width } = useViewportWidth();
 
-  const [cardIncrement, setCardIncrement] = React.useState(4);
-  const [moviesToShow, setMoviesToSow] = React.useState(12);
+  const cardIncrementNumber = {
+    big: 4,
+    medium: 3,
+    small: 2,
+  };
+
+  const moviesToShowNumber = {
+    big: 12,
+    medium: 8,
+    small: 5,
+  };
+
+  const [cardIncrement, setCardIncrement] = React.useState(
+    cardIncrementNumber.big
+  ); //4
+  const [moviesToShow, setMoviesToSow] = React.useState(moviesToShowNumber.big);
   const [moreMovies, setMoreMovies] = React.useState(0);
 
   React.useEffect(() => {
     if (width <= 1280) {
-      setCardIncrement(3);
+      setCardIncrement(cardIncrementNumber.medium);
     }
     if (width <= 1024) {
-      setCardIncrement(2);
-      setMoviesToSow(8);
+      setCardIncrement(cardIncrementNumber.small);
+      setMoviesToSow(moviesToShowNumber.medium);
     }
     if (width <= 765) {
-      setMoviesToSow(5);
+      setMoviesToSow(moviesToShowNumber.small);
     }
   }, [width]);
 
   function handleMoreBtn() {
     setMoreMovies((prevState) => prevState + cardIncrement);
   }
-
   return (
     <section className="movies">
       <SearchForm onSearch={onSearch} />
