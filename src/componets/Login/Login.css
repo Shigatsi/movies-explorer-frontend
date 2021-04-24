@@ -10,7 +10,7 @@
   width: 396px;
 }
 
-.form__items{
+.form__items {
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -18,20 +18,19 @@
   width: 100%;
   list-style: none;
   padding: 0;
-
 }
 
 .form__items_type_login {
-  height:156px;
+  height: 156px;
 }
 
-.form__item{
+.form__item {
   display: grid;
   row-gap: 10px;
   margin-bottom: 10px;
 }
 
-.form__item:last-of-type{
+.form__item:last-of-type {
   margin-bottom: 0;
 }
 
@@ -39,11 +38,11 @@
   font-weight: normal;
   font-size: 10px;
   line-height: 12px;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 .form__input {
-  background: #F9F9F9;
+  background: #f9f9f9;
   border: none;
   border-radius: 8px;
   height: 46px;
@@ -52,28 +51,27 @@
   padding-left: 15px;
 }
 
-
-.profile__form-input:focus{
+.profile__form-input:focus {
   outline: none;
 }
 
 .form__input_type_error {
-  color: #FF4062;
-
+  color: #ff4062;
 }
 
-.form__input-error{
+.form__input-error {
+  height: 20px;
   font-weight: normal;
   font-size: 10px;
   line-height: 12px;
-  color: #FF4062;
+  color: #ff4062;
 }
 
 .form__input-error_hidden {
   visibility: hidden;
 }
 
-.form__submit-btn{
+.form__submit-btn {
   height: 45px;
   background-color: #000;
   opacity: 1;
@@ -92,13 +90,20 @@
   margin: 179px 0 0;
 }
 
-.form__submit-btn:hover{
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, .8);
-  transition: .2s ease-in-out;
+.form__submit-btn_type_disabled {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+  cursor: default;
+  pointer-events: none;
 }
 
-.form__submit-btn:focus{
+.form__submit-btn:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: 0.2s ease-in-out;
+}
+
+.form__submit-btn:focus {
   outline: none;
 }
 
@@ -107,7 +112,7 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 .form__link {
@@ -115,12 +120,12 @@
   font-size: 14px;
   line-height: 17px;
   text-decoration: none;
-  color:#000;
+  color: #000;
 }
 
-.form__link:hover{
-  opacity: 70%;
-  transition: .2s ease-in-out;
+.form__link:hover {
+  opacity: 0.7;
+  transition: 0.2s ease-in-out;
 }
 
 @media screen and (max-width: 768px) {

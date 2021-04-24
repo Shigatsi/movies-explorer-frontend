@@ -1,19 +1,19 @@
 .tech {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  margin:0;
+  margin: 0;
   padding: 100px 50px;
-  background: #F5F5F5;
+  background: #f5f5f5;
   align-items: center;
 }
 
-.section-title__type_tech{
+.section-title__type_tech {
   align-self: stretch;
   margin: 0 20px;
 }
 
 .tech__subtitle {
-  padding:90px 0 0;
+  padding: 90px 0 0;
   font-size: 50px;
   line-height: 58px;
   margin: 0;
@@ -21,7 +21,7 @@
 }
 
 .tech__text {
-  padding:26px 0 100px;
+  padding: 26px 0 100px;
   max-width: 460px;
   font-size: 14px;
   line-height: 20px;
@@ -30,22 +30,22 @@
   letter-spacing: -0.04em;
 }
 
-.tech__items{
+.tech__items {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  padding:0 70px;
-  margin:0;
+  padding: 0 70px;
+  margin: 0;
 }
 
 .tech__item {
   font-size: 14px;
   line-height: 17px;
   letter-spacing: -0.04em;
-  margin:0;
+  margin: 0;
   width: 90px;
   height: 60px;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -54,12 +54,11 @@
 
 @media screen and (max-width: 1024px) {
   .tech__items {
-    padding:0;
+    padding: 0;
     flex-wrap: wrap;
     justify-content: center;
   }
   .tech__item {
-
     width: 84px;
     height: 57px;
   }
@@ -67,12 +66,12 @@
 
 @media screen and (max-width: 768px) {
   .tech {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    margin:0;
+    margin: 0;
     padding: 90px 50px;
   }
-  .section-title__type_tech{
+  .section-title__type_tech {
     align-self: stretch;
     margin: 0;
   }
@@ -83,13 +82,12 @@
   .tech__text {
     font-size: 12px;
     line-height: 18px;
-    padding:22px 0 83px;
+    padding: 22px 0 83px;
   }
   .tech__item {
     font-size: 12px;
     line-height: 15px;
   }
-
 }
 
 @media screen and (max-width: 425px) {
@@ -104,7 +102,7 @@
   }
 
   .tech__text {
-    padding:24px 0 50px;
+    padding: 24px 0 50px;
     font-size: 11px;
     line-height: 16px;
   }

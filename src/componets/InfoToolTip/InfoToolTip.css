@@ -1,0 +1,134 @@
+.popup {
+  margin: 0 -42.7px 0 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  visibility: visible;
+  opacity: 1;
+
+  -moz-transition: visibility 0s, opacity 0.5s linear;
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  -o-transition: visibility 0s, opacity 0.5s linear;
+  -ms-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.popup_hidden {
+  visibility: hidden;
+  opacity: 0;
+
+  -moz-transition: opacity 0.5s, visibility 0.5s linear;
+  -webkit-transition: opacity 0.5s, visibility 0.5s linear;
+  -o-transition: opacity 0.5s, visibility 0.5s linear;
+  -ms-transition: opacity 0.5s, visibility 0.5s linear;
+  transition: opacity 0.5s, visibility 0.5s linear;
+}
+
+.popup__content {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-columns: auto;
+}
+
+.popup__close-button {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  width: 40.7px;
+  height: 40.7px;
+  transform: rotate(45deg);
+  border: none;
+  background-color: #000;
+  background: center url(../../images/close_btn.svg);
+  position: relative;
+  align-self: end;
+}
+
+.popup__close-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s ease-in-out;
+}
+
+.popup__close-button:focus {
+  outline: none;
+}
+
+.popup__form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  grid-row-start: 2;
+  width: 430px;
+  border-radius: 10px;
+  position: relative;
+  align-self: start;
+}
+
+.popup__tooltip-img-container {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.popup__tooltip-img {
+  width: 120px;
+  margin-top: 60px;
+}
+
+.popup__tooltip-img-caption {
+  font-size: 24px;
+  line-height: 29px;
+  margin: 32px 36px 60px 36px;
+  text-align: center;
+}
+
+@media screen and (max-width: 540px) {
+  .popup {
+    margin: 0 -30.5px 0 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .popup {
+    margin: 0 -22.8px 0 0;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .popup__close-button {
+    width: 30.5px;
+    height: 30.5px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .popup__close-button {
+    width: 22.8px;
+    height: 22.8px;
+  }
+
+  .popup__tooltip-img-caption {
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin: 40px 18px 50px;
+    text-align: center;
+  }
+
+  .popup__tooltip-img {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .popup__form {
+    width: 240px;
+  }
+}

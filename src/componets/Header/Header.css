@@ -1,7 +1,7 @@
 .header {
   display: flex;
-  margin:18px 70px;
-  align-items:center;
+  margin: 18px 70px;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -13,21 +13,21 @@
   display: flex;
 }
 
-.header__default-link{
+.header__default-link {
   font-weight: 500;
   font-size: 12px;
   line-height: 32px;
   text-decoration: none;
-  color:#000;
+  color: #000;
 }
 
-.header__default-link:first-of-type{
+.header__default-link:first-of-type {
   margin-right: 30px;
 }
 
-.header__default-link:hover{
-  opacity: 70%;
-  transition: .2s ease-in-out;
+.header__default-link:hover {
+  opacity: 0.7;
+  transition: 0.2s ease-in-out;
 }
 
 .header__link_type_login {
@@ -41,7 +41,7 @@
 
 .header__authorized-link {
   text-decoration: none;
-  color:#000;
+  color: #000;
   font-size: 13px;
   line-height: 18px;
 }
@@ -61,12 +61,12 @@
 }
 
 .header__profile {
-  display:flex;
+  display: flex;
   gap: 7px;
   padding-left: 12px;
   padding-right: 12px;
   align-items: center;
-  border: 2px solid  rgb(170, 170, 170, 0.2);;
+  border: 2px solid rgb(170, 170, 170, 0.2);
   box-sizing: border-box;
   border-radius: 50px;
   margin: 0;
@@ -82,23 +82,22 @@
   font-weight: 500;
 }
 
-
 @media screen and (max-width: 768px) {
   .header {
-    margin:18px 30px 0;
+    margin: 18px 30px 0;
   }
 }
 
 @media screen and (max-width: 425px) {
   .header {
-    margin:18px 14px 0;
+    margin: 18px 14px 0;
   }
 
-  .header__default-link:first-of-type{
+  .header__default-link:first-of-type {
     margin-right: 14px;
   }
 
-  .header__default-link{
+  .header__default-link {
     font-size: 10px;
     line-height: 26px;
   }

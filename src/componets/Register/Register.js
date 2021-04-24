@@ -1,20 +1,59 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import './Register.css';
+import "./Register.css";
 
-import FormHeader from '../FormHeader/FormHeader';
+import useFormWithValidation from "../Validation/Validation";
+import FormHeader from "../FormHeader/FormHeader";
 
-function Register () {
+function Register({ onRegister, isDataUpdate, serverErr }) {
+  const [data, setUserData] = React.useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  React.useEffect(() => {
+    setUserData(data);
+  }, [data]);
+
+  const {
+    values = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    },
+    handleChange,
+    errors,
+    isValid,
+    resetForm,
+  } = useFormWithValidation();
+
+  function hadleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+    if (data) {
+      onRegister(values ? values : data);
+    }
+    return;
+  }
+  const [serverErrMsg, setServerErrMsg] = React.useState("");
+
+  React.useEffect(() => {
+    if (serverErr.includes(409)) {
+      setServerErrMsg("Пользователь с таким email уже существует.");
+    } else if (serverErr.includes(500)) {
+      setServerErrMsg("При регистрации пользователя произошла ошибка.");
+    }
+  }, [serverErr]);
+
   return (
     <section className="register">
-      <form className = "register__form">
-        <FormHeader
-          subtitle = 'Добро пожаловать!'
-        />
+      <form onSubmit={hadleSubmit} className="register__form">
+        <FormHeader subtitle="Добро пожаловать!" />
         <ul className="form__items form__items_type_register">
-          <li className= "form__item">
-          <label className="form__label">Имя</label>
+          <li className="form__item">
+            <label className="form__label">Имя</label>
             <input
               type="text"
               id="form_name"
@@ -23,12 +62,15 @@ function Register () {
               maxLength="40"
               pattern="[а-яёА-ЯЁA-Za-z \-]*"
               required
-              className="form__input"
-              // value={values.name}
-              // onChange={handleChange}
-              />
+              readOnly={isDataUpdate}
+              className={`form__input ${
+                errors.name ? "form__input_type_error" : ""
+              } `}
+              value={values.name}
+              onChange={handleChange}
+            />
           </li>
-          <li className= "form__item">
+          <li className="form__item">
             <label className="form__label">E-mail</label>
             <input
               type="email"
@@ -37,9 +79,12 @@ function Register () {
               minLength="3"
               maxLength="40"
               required
-              className="form__input"
-              // value={values.email}
-              // onChange={handleChange}
+              readOnly={isDataUpdate}
+              className={`form__input ${
+                errors.email ? "form__input_type_error" : ""
+              } `}
+              value={values.email}
+              onChange={handleChange}
             />
           </li>
           <li className="form__item">
@@ -51,21 +96,42 @@ function Register () {
               minLength="8"
               maxLength="40"
               required
-              className="form__input"
-              // value={values.email}
-              // onChange={handleChange}
+              readOnly={isDataUpdate}
+              className={`form__input ${
+                errors.password ? "form__input_type_error" : ""
+              } `}
+              value={values.password}
+              onChange={handleChange}
             />
-            <span className = "form__input-error form__input-error_hidden">Что-то пошло не так...</span>
+            <span
+              className={
+                errors || serverErr
+                  ? "form__input-error "
+                  : "form__input-error_hidden"
+              }
+            >
+              {errors.name || errors.email || errors.password || serverErrMsg}
+            </span>
           </li>
         </ul>
-        <button className="form__submit-btn form__submit-btn_type_register">Зарегистрироваться</button>
+        <button
+          className={`form__submit-btn form__submit-btn_type_register ${
+            errors.name || errors.email || errors.password
+              ? "form__submit-btn_type_disabled"
+              : ""
+          }`}
+        >
+          Зарегистрироваться
+        </button>
         <p className="form__text">
-        Уже зарегистрированы?
-          <Link className="form__link" to = "/sign-up">&nbsp;Войти</Link>
+          Уже зарегистрированы?
+          <Link className="form__link" to="/sign-in">
+            &nbsp;Войти
+          </Link>
         </p>
       </form>
     </section>
-  )
+  );
 }
 
 export default Register;

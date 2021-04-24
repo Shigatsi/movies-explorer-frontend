@@ -6,20 +6,20 @@
 .movies__more {
   margin: 50px 0 80px;
   align-self: center;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   border-radius: 6px;
   width: 320px;
   height: 26px;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
-  border:none;
+  border: none;
 }
 
 .movies__more:hover {
   cursor: pointer;
-  opacity: 70%;
-  transition: .2s ease-in-out;
+  opacity: 0.7;
+  transition: 0.2s ease-in-out;
   outline: none;
 }
 
