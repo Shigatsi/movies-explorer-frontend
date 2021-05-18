@@ -1,7 +1,7 @@
 # Сайт-визитка и сервис Movie explorer
 
 ### https://www.shigatsimovie.students.nomoredomains.icu/
-### [поддомен с API] (api.shigatsimovie.students.nomoredomains.icu/ "ссылка на поддомен с API")
+### [поддомен с API](api.shigatsimovie.students.nomoredomains.icu/ "ссылка на поддомен с API")
 
 Сервис Movie explorer: интерактивная страница по поиску фильмов о музыке и искусстве, где можно искать фильмы по ключевым словам добавлять их в избранное.
 
